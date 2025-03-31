@@ -1,0 +1,47 @@
+$sides: (
+  '': '',
+  't': 'top',
+  'b': 'bottom',
+  'l': 'left',
+  'r': 'right',
+);
+
+$breakpoints: (
+  '': '',
+  'xs': 0px,
+  'sm': 600px,
+  'md': 900px,
+  'lg': 1200px,
+);
+
+@each $breakName, $breakValue in $breakpoints {
+    @each $sideName, $sideValue in $sides {
+        @for $i from 0 through 50 {
+            $property: if($sideName == '', '', -#{$sideValue});
+            $space: $i * 0.25;
+            $selector: '';
+            @if $breakName != '' {
+                $selector: #{$sideName}-#{$breakName}-#{$i};
+            } @else {
+                $selector: #{$sideName}-#{$i};
+            }
+            @if $breakName != '' {
+                @media (min-width: $breakValue) {
+                    .m#{$selector} {
+                    margin#{$property}: #{$space}rem !important;
+                    }
+                    .p#{$selector} {
+                    padding#{$property}: #{$space}rem !important;
+                    }
+                }
+            } @else {
+                .m#{$selector} {
+                    margin#{$property}: #{$space}rem !important;
+                }
+                .p#{$selector} {
+                    padding#{$property}: #{$space}rem !important;
+                }
+            }
+        }
+    }
+}

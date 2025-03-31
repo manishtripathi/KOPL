@@ -1,0 +1,127 @@
+@import '../../styles/variable.scss';
+@import '../../styles/spacing.scss';
+
+.footer {
+    background: rgb(21,21,21);
+    background: radial-gradient(circle, rgba(21, 21, 21, 1) 0%, rgba(29, 30, 53, 1) 100%);
+    width: 100%;
+    padding: 4rem 0 0 0;
+    overflow: hidden;
+    position: relative;
+    @include tablet {
+        padding: 4.5rem 0 0 0;
+    }
+    .animated-pattern {
+        width: 90%;
+        position: absolute;
+        top: -5rem;
+        right: 0;
+        @include tablet {
+            width: auto;
+            top: -8rem;
+        }
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    h5 {
+        color: $white;
+        font-size: 1.25rem;
+        line-height: 2rem;
+        font-weight: 600;
+        margin: 0;
+        padding: 0 0 0.5rem 0;
+    }
+    p {
+        color: $white;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            padding: 0 0 1rem 0;
+            .MuiButton-root {
+                color: $white;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                font-weight: 400;
+                text-decoration: none;
+                text-transform: capitalize;
+                justify-content: flex-start;
+                padding: 0;
+                text-align: start;
+            }
+        }
+    }
+    h6 {
+        color: $white;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+        padding: 0 0 1rem 0;
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+    .social-icons {
+        li {
+            margin: 0 0.5rem 0 0;
+            display: inline-block;
+            a {
+                background: $default-red;
+                width: 2.5rem;
+                height: 2.5rem;
+                color: $white;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                @include border-radius(0.25rem);
+            }
+        }
+    }
+    .footer-bottom {
+        width: 100%;
+        margin: 11.25rem 0 0 0;
+        padding: 2rem 0;
+        color: $white;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 400;
+        text-align: center;
+        @include tablet {
+            margin: 12.5rem 0 0 0;
+        }
+    }
+    .contact-us-circle {
+        background: $white;
+        width: 4rem;
+        height: 4rem;
+        padding: 0.3125rem;
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 10;
+        -webkit-box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 0.625rem 0 rgba(0, 0, 0, 0.5);
+        @include border-radius(50%);
+        @include tablet {
+            width: 5rem;
+            height: 5rem;
+            right: 6rem;
+            bottom: 6rem;
+        }
+        img {
+            width: 100%;
+        }
+    }
+}

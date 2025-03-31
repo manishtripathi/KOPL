@@ -1,0 +1,23 @@
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.w-100 {
+    width: 100%;
+}
+.position-relative {
+    position: relative;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: end;
+}
+.d-block {
+    display: block;
+}
+.d-flex {
+    display: flex;
+}

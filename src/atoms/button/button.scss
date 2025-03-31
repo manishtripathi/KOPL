@@ -1,0 +1,71 @@
+@import '../../styles/variable.scss';
+@import '../../styles/spacing.scss';
+
+.MuiButtonBase-root {
+    &.MuiButton-outlined {
+        background: transparent;
+        color: $black-color;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 600;
+        margin: 0 auto;
+        padding: 0.7rem 0 0.7rem 1.5rem;
+        letter-spacing: normal;  
+        text-transform: uppercase;
+        border: 0.0625rem solid $black-color;
+        font-family: $font-family;
+        transition: all 1s ease;
+        @include border-radius(0.25rem);
+        &.MuiButton-sizeSmall {   
+            font-size: 0.8125rem;
+            line-height: 1.25rem;         
+            padding: 0.5rem 0 0.5rem 1rem;
+        }
+        .MuiButton-endIcon {
+            opacity: 0;
+            margin-right: 0;
+            margin-left: 0;
+        }
+        &:hover {
+            background: $default-red;
+            color: $white;
+            padding-right: 1.25rem;
+            transition: all 1s ease;
+            border: 0.0625rem solid transparent;
+            .MuiButton-endIcon {
+                opacity: 1;
+            }
+        }
+    }
+    &.MuiButton-containedPrimary {
+        background: $default-red;
+        color: $white;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 0.75rem 0 0.75rem 1.5rem;
+        font-family: $font-family;
+        transition: all 1s ease;
+        @include border-radius(0.25rem);
+        &.MuiButton-sizeSmall {   
+            font-size: 0.8125rem;
+            line-height: 1.25rem;         
+            padding: 0.5rem 0 0.5rem 1rem;
+        }
+        .MuiButton-endIcon {
+            opacity: 0;
+            margin-right: 0;
+            margin-left: 0;
+        }
+        &:hover {
+            background: $black-color;
+            color: $white;
+            padding-right: 1.25rem;
+            transition: all 1s ease;
+            .MuiButton-endIcon {
+                opacity: 1;
+            }
+        }
+    }
+}

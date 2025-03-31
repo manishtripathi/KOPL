@@ -1,0 +1,230 @@
+@import '../../styles/variable.scss';
+@import '../../styles/spacing.scss';
+
+.products-section {
+    .gradient-section {
+        background: rgb(21, 21, 21);
+        background: radial-gradient(circle, rgba(21, 21, 21, 1) 0%, rgba(29, 30, 53, 1) 100%); 
+        width: 100%;     
+        padding: 10rem 0 5rem 0;
+        position: relative;
+        @include laptop {
+            padding: 12.5rem 0 6.5rem 0;
+        }
+        .pattern-top {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
+            @include desktop {
+                display: block;
+            }
+            img {
+                height: 14.375rem;
+                opacity: 0.1;
+            }
+        }
+        .pattern-bottom {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transform: rotate(-180deg);
+            display: none;
+            @include desktop {
+                display: block;
+            }
+            img {
+                height: 14.375rem;
+                opacity: 0.1;
+            }
+        }
+        h1 {
+            color: $white;
+            font-size: 2rem;
+            line-height: 3rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 0 0.5rem 0;
+            @include laptop {
+                font-size: 2.8125rem;
+                line-height: 4.25rem;
+            }
+        }  
+        p {
+            color: $white;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin: 0 0 2.5rem 0;
+            @include laptop {
+                font-size: 1.25rem;
+                line-height: 2rem;
+                margin: 0 0 5rem 0;
+            }
+        }
+        .product-thumb {
+            position: relative;
+            overflow: hidden;
+            @include border-radius(1rem);
+            img {
+                width: 100%;
+                float: left;
+                @include border-radius(1rem);
+            }
+            .overlay {
+                background: rgb(0,0,0);
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+                width: 100%;
+                height: 100%;
+                color: $white;
+                font-size: 1.25rem;
+                line-height: 2rem;
+                padding: 1.5rem 1rem;
+                font-weight: 600;
+                position: absolute;
+                top: 0;
+                left: 0;
+                align-items: flex-end;
+                display: flex;
+                transition: all 0.5s ease;
+                .MuiButton-root {
+                    color: $default-red;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                    font-weight: 500;
+                    position: absolute;
+                    bottom: 0;
+                    z-index: 3;
+                    opacity: 0;
+                    text-transform: uppercase;
+                    gap: 0.5rem;
+                    padding: 0;
+                    display: flex;
+                    transition: all 0.5s ease;
+                    img {
+                        width: 1.5rem;
+                        filter: brightness(0) saturate(100%) invert(16%) sepia(81%) saturate(4656%) hue-rotate(349deg) brightness(93%) contrast(92%);
+                    }
+                }
+                &:hover {
+                    padding-bottom: 3rem;
+                    .MuiButton-root {
+                        opacity: 1;
+                        bottom: 1rem;
+                    }
+                }
+            }
+        }
+    }    
+    .measurement {
+        background: $white;
+        width: 100%;
+        padding: 3.5rem 0;
+        text-align: center;
+        @include laptop {
+            padding: 6.5rem 0;
+        }
+        h4 {
+            color: $pink;
+            font-size: 2.25rem;
+            line-height: 3.375rem;
+            font-weight: 600;
+            @include laptop {
+                font-size: 3.5625rem;
+                line-height: 5.375rem;
+            }
+        }
+        p {
+            color: $black-color;
+            font-size: 1rem;
+            line-height: 1.5rem;;
+            font-weight: 600;
+            margin: 0;
+            padding: 0.5rem 0 0 0;
+            @include laptop {
+                font-size: 1.5rem;
+                line-height: 2.25rem;
+            }
+        }
+    }
+    .discover-offices {
+        background: $pink;
+        width: 100%;
+        padding: 3.5rem 0;
+        position: relative;
+        overflow: hidden;
+        @include laptop {
+            padding: 4.125rem 0;
+        }
+        @keyframes run {
+            0% {
+              left: -5rem;
+            }
+            100% {
+              left: 107%;    
+            }
+        }
+        &::after{
+            background: #fff;
+            content: "";
+            width: 10rem;
+            height: 25rem;
+            opacity: 0.15;
+            position: absolute;
+            top: -5rem;
+            transform: rotate(-30deg);
+            transition: all 3000ms cubic-bezier(0.19, 1, 0.22, 1);
+            animation: 4s run infinite;
+            display: none;
+            @include laptop {
+                display: block;
+            }
+        }
+        h6 {
+            color: $white;
+            font-size: 1.75rem;
+            line-height: 2.625rem;
+            font-weight: 600;
+            text-align: center;
+            @include laptop {
+                font-size: 2.25rem;
+                line-height: 3.375rem;
+                text-align: left;
+            }
+        }
+        .MuiButtonBase-root {
+            &.MuiButton-outlined {
+                background: transparent;
+                color: $white;
+                font-size: 1rem;
+                line-height: 1.5rem;
+                font-weight: 600;
+                margin: 0 auto;
+                padding: 0.7rem 0 0.7rem 1.5rem;
+                letter-spacing: normal;  
+                text-transform: uppercase;
+                border: 0.0625rem solid $white;
+                font-family: $font-family;
+                transition: all 1s ease;
+                @include border-radius(0.25rem);
+                display: flex;
+                .MuiButton-endIcon {
+                    opacity: 0;
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+                &:hover {
+                    background: $black-color;
+                    color: $white;
+                    padding-right: 1.25rem;
+                    transition: all 1s ease;
+                    border: 0.0625rem solid transparent;
+                    .MuiButton-endIcon {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
