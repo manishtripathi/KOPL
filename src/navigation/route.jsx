@@ -18,6 +18,7 @@ import ManufacturingUnits from '../pages/manufacturingUnits/manufacturingUnits'
 import Blog from '../pages/blog/blog'
 import NewsEvent from '../pages/newsEvent/newsEvent'
 import Careers from '../pages/careers/careers'
+import CreateNews from '../Admin/createNews'
 
 const RootRouter = () => {
     return (
@@ -63,6 +64,7 @@ const RootRouter = () => {
             <Route path="/news-events" element={<NewsEvent />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/admincategories" element={<AdminCategories />} />
+            <Route path="/createnews" element={<CreateNews/>}/>
 
             </Routes>
 

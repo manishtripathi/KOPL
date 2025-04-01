@@ -19,6 +19,8 @@
     "cors": "^2.8.5",
     "firebase": "^11.5.0",
     "framer-motion": "^12.4.7",
+    "jodit-react": "^5.2.18",
+    "kumar-organics-products": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
