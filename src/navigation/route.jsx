@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from 'react'
 import { Routes, Route } from "react-router-dom"
-import {AdminCategories} from '../Link/link'
+import {AdminCategories, ProductList} from '../Link/link'
 import Home from '../pages/home/home'
 import Products from '../pages/products/products'
 import WhoWeAre from '../pages/whoWeAre/whoWeAre'
@@ -63,6 +63,7 @@ const RootRouter = () => {
             <Route path="/news-events" element={<NewsEvent />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/admincategories" element={<AdminCategories />} />
+            <Route path='/productlist' element={<ProductList/>} />
 
             </Routes>
 

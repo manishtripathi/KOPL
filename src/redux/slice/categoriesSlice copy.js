@@ -12,19 +12,20 @@ export const fetchCategories = createAsyncThunk("categories/fetchcategories", as
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}))
 }) 
 
+// export const addCategory = createAsyncThunk("categories/addCategories", async (category) => {
     export const addCategory = createAsyncThunk(
         "categories/addCategories",
         async ({ name, imageFile, base64Image }) => {
           try {
             let imageUrl = "";
-            if (imageFile) {
+            // if (imageFile) {
             //   console.log("Uploading image 1:", imageFile);
-            const imageRef = ref(storage, `categories/${uuidv4()}`);
+            //   const imageRef = ref(storage, `categories/${uuidv4()}`);
             // const res=  await uploadBytes(imageRef, imageFile);
             // console.log("response from upload", res)
             //   imageUrl = await getDownloadURL(imageRef);
             //   console.log("Image uploaded successfully. URL:", imageUrl);
-            }
+            // }
       
             const categoryData = { name, image: base64Image };
             const docRef = await addDoc(collection(db, "categories"), categoryData);
@@ -51,12 +52,8 @@ const categorySlice = createSlice({
         loading: false,
         error: null,
         image: null,
-        selectedCategory: "",
     },
     reducers: {
-        setSelectedCategory: (state, action) => {
-            state.selectedCategory = action.payload;
-        },
         setImage : (state, action) => {
             state.image = action.payload.image;
         }
@@ -84,6 +81,5 @@ const categorySlice = createSlice({
         })
     }
 }) 
-
-export const {setImage, setSelectedCategory} = categorySlice.actions;
+export const {setImage} = categorySlice.actions;
 export default categorySlice.reducer;
