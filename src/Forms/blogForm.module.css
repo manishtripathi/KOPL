@@ -1,0 +1,166 @@
+/* Improved UI/UX for Blog Form - blogForm.module.css */
+.blogForm {
+    padding: 28px;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+  }
+
+  .formContainer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 3rem;
+    background-color: #333333;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .formContainer h2 {
+    text-align: center;
+    color: #fff;
+  }
+
+  .formGroup {
+    margin-bottom: 2.5rem;
+  }
+
+  .formGroup label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #eeeeee;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .formGroup label:hover {
+    color: #ffffff;
+  }
+
+  .formGroup input[type="text"],
+  .formGroup input[type="file"] {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #ffffff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .formGroup input[type="text"]::placeholder {
+    color: #aaa;
+    opacity: 0.8;
+  }
+
+  .formGroup input[type="text"]:focus,
+  .formGroup input[type="file"]:focus {
+    border-color: #4dabf7;
+    outline: none;
+    box-shadow: 0 0 8px rgba(77, 171, 247, 0.5);
+  }
+
+  .editorContainer {
+    border: 1px solid #555;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #444;
+    padding: 1.2rem;
+    transition: border-color 0.3s ease-in-out;
+  }
+
+  .editorContainer .jodit-container {
+    color: black !important;
+  }
+
+  .editorContainer:focus-within {
+    border-color: #4dabf7;
+    box-shadow: 0 0 8px rgba(77, 171, 247, 0.5);
+  }
+
+  .errorMessage {
+    color: #ff6666;
+    font-size: 1.05rem;
+    margin-top: 0.6rem;
+    font-weight: 500;
+    animation: shake 0.4s ease-in-out;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+  }
+
+  .submitButton {
+    background: linear-gradient(135deg, #4dabf7, #3182ce);
+    color: white;
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .submitButton:hover {
+    background: linear-gradient(135deg, #3182ce, #2864a0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .submitButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .submitButton:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+  }
+
+  .imagePreviewContainer {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+  }
+
+  .imagePreview,
+  .thumbnailPreview {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 12px;
+    border: 2px solid #555;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .imagePreview:hover,
+  .thumbnailPreview:hover {
+    transform: scale(1.1);
+    border-color: #4dabf7;
+    box-shadow: 0 4px 10px rgba(77, 171, 247, 0.5);
+  }
+
+  .imagePreviewContainer p,
+  .formGroup > label {
+    width: 100%;
+    text-align: left;
+  }

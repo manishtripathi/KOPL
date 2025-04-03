@@ -21,6 +21,7 @@ import Careers from '../pages/careers/careers'
 import CreateNews from '../Admin/createNews'
 import NewsDetail from '../templates/home/NewsDetail';  // Adjust the path if needed
 import AllNews from '../templates/home/AllNews';  // Adjust the path if needed
+import CreateBlog from '../Admin/createBlog'
 
 const RootRouter = () => {
     return (
@@ -67,7 +68,10 @@ const RootRouter = () => {
             <Route path="/careers" element={<Careers />} />
             <Route path="/admincategories" element={<AdminCategories />} />
             <Route path="/createnews" element={<CreateNews/>}/>
+            <Route path="/createblogs" element={<CreateBlog/>}/>
+
             <Route path="/news/:id" element={<NewsDetail />} />
+
             <Route path="/all-news" element={<AllNews />} />
 
 
