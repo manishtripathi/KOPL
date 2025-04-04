@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Box, Button, Typography, TextField, IconButton, Paper, Stack } from "@mui/material";
-import { Add, Delete } from "@mui/icons-material";
+import { useState, useEffect } from "react";
+import { Delete } from "@mui/icons-material"; // Optional: Replace with icons or remove
 
-// Define types
 interface Field {
   label: string;
   value: string;
@@ -19,24 +17,21 @@ interface Specification {
   sections: Section[];
 }
 
-const ProductDetailForm = ({onSave}:{onSave:(data:any)=>void}) => {
+const ProductDetailForm = ({ onSave }: { onSave: (data: any) => void }) => {
   const [specifications, setSpecifications] = useState<Specification>({ sections: [] });
 
-  // Add a new section
   const addSection = () => {
     setSpecifications((prev) => ({
       sections: [...prev.sections, { title: "", fields: [{ label: "", value: "" }] }],
     }));
   };
 
-  // Remove a section
   const removeSection = (index: number) => {
     setSpecifications((prev) => ({
       sections: prev.sections.filter((_, i) => i !== index),
     }));
   };
 
-  // Add a field to a section
   const addField = (sectionIndex: number) => {
     setSpecifications((prev) => {
       const updatedSections = [...prev.sections];
@@ -45,7 +40,6 @@ const ProductDetailForm = ({onSave}:{onSave:(data:any)=>void}) => {
     });
   };
 
-  // Remove a field from a section
   const removeField = (sectionIndex: number, fieldIndex: number) => {
     setSpecifications((prev) => {
       const updatedSections = [...prev.sections];
@@ -56,7 +50,6 @@ const ProductDetailForm = ({onSave}:{onSave:(data:any)=>void}) => {
     });
   };
 
-  // Handle input change
   const handleInputChange = (
     sectionIndex: number,
     fieldIndex: number | null,
@@ -64,13 +57,11 @@ const ProductDetailForm = ({onSave}:{onSave:(data:any)=>void}) => {
     value: string
   ) => {
     setSpecifications((prev) => {
-      const updatedSections:any = [...prev.sections];
+      const updatedSections: any = [...prev.sections];
 
       if (fieldIndex === null) {
-        // Update section title
         updatedSections[sectionIndex].title = value;
       } else {
-        // Update field label or value
         updatedSections[sectionIndex].fields[fieldIndex][key] = value;
       }
 
@@ -78,73 +69,81 @@ const ProductDetailForm = ({onSave}:{onSave:(data:any)=>void}) => {
     });
   };
 
-  // Handle form submission
-  const handleSubmit = () => {
-    console.log("Submitted Specifications:", specifications);
+  useEffect(() => {
     onSave(specifications);
-  };
+    console.log("Updated specifications:", specifications);
+  }, [specifications, onSave]);
 
   return (
-    <Box sx={{ maxWidth: 600, mx: "auto", p: 3, boxShadow: 3, borderRadius: 2, backgroundColor: "#fff" }}>
-      <Typography variant="h6" gutterBottom>
-        Product Specifications
-      </Typography>
+    <div className="mx-auto bg-white ">
+      <h2 className=" mb-4">Product Specifications</h2>
 
       {specifications.sections.map((section, sectionIndex) => (
-        <Paper key={sectionIndex} sx={{ p: 2, mb: 2 }}>
-          <Stack spacing={2}>
-            {/* Section Title */}
-            <TextField
-              label="Section Title"
-              fullWidth
+        <div key={sectionIndex} className="border p-4 rounded mb-4 bg-gray-50">
+          <div className="mb-3">
+            <input
+              type="text"
+              className="w-full p-2 border rounded"
+              placeholder="Section Title"
               value={section.title}
               onChange={(e) => handleInputChange(sectionIndex, null, "title", e.target.value)}
             />
+          </div>
 
-            {/* Fields */}
-            {section.fields.map((field, fieldIndex) => (
-              <Stack key={fieldIndex} direction="row" spacing={2}>
-                <TextField
-                  label="Label"
-                  fullWidth
-                  value={field.label}
-                  onChange={(e) => handleInputChange(sectionIndex, fieldIndex, "label", e.target.value)}
-                />
-                <TextField
-                  label="Value"
-                  fullWidth
-                  value={field.value}
-                  onChange={(e) => handleInputChange(sectionIndex, fieldIndex, "value", e.target.value)}
-                />
-                <IconButton onClick={() => removeField(sectionIndex, fieldIndex)} color="error">
-                  <Delete />
-                </IconButton>
-              </Stack>
-            ))}
+          {section.fields.map((field, fieldIndex) => (
+            <div key={fieldIndex} className="flex gap-2 mb-2">
+              <input
+                type="text"
+                className="w-1/2 p-2 border rounded"
+                placeholder="Label"
+                value={field.label}
+                onChange={(e) =>
+                  handleInputChange(sectionIndex, fieldIndex, "label", e.target.value)
+                }
+              />
+              <input
+                type="text"
+                className="w-1/2 p-2 border rounded"
+                placeholder="Value"
+                value={field.value}
+                onChange={(e) =>
+                  handleInputChange(sectionIndex, fieldIndex, "value", e.target.value)
+                }
+              />
+              <button
+                className="bg-red-500 text-white px-3 rounded"
+                onClick={() => removeField(sectionIndex, fieldIndex)}
+              >
+                <Delete fontSize="small" /> {/* Optional icon */}
+              </button>
+            </div>
+          ))}
 
-            {/* Add Field Button */}
-            <Button variant="outlined" startIcon={<Add />} onClick={() => addField(sectionIndex)}>
-              Add Field
-            </Button>
-          </Stack>
+          <button
+            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={() => addField(sectionIndex)}
+          >
+            + Add Field
+          </button>
 
-          {/* Remove Section Button */}
-          <Button variant="outlined" color="error" sx={{ mt: 2 }} onClick={() => removeSection(sectionIndex)}>
+          <button
+            className="mt-2 ml-3 px-4 py-2 bg-red-600 text-white rounded"
+            onClick={() => removeSection(sectionIndex)}
+          >
             Remove Section
-          </Button>
-        </Paper>
+          </button>
+        </div>
       ))}
 
-      {/* Add Section Button */}
-      <Button variant="contained" color="primary" onClick={addSection} startIcon={<Add />} sx={{ mb: 2 }}>
-        Add Section
-      </Button>
-
-      {/* Submit Button */}
-      <Button onClick={handleSubmit} variant="contained" color="secondary" fullWidth>
-        Submit Product
-      </Button>
-    </Box>
+      <div className="mt-4 mb-4">
+        <button
+          className="px-5 py-2 bg-green-600 text-white rounded"
+          onClick={addSection}
+        >
+          + Add Section
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -19,7 +19,7 @@ import { fetchProducts } from '../../redux/slice/productlistSlice'
 import './cetylpyridiniumChloridMonohydrate.scss'
 
 const ProductDetails = () => {
-    
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -37,6 +37,12 @@ const ProductDetails = () => {
             navigate('/antibacterial-products');
         }
     }, [selectedProduct, navigate]);
+
+    const tabItems = selectedProduct?.productDetails?.sections?.map((section, index) => ({
+        label: section.title,
+        text: section.title,
+        key: index
+      }));
     return (
         <div className="products-detail">
             <Container className='container'>
@@ -48,8 +54,8 @@ const ProductDetails = () => {
                     </AtomButton>
                     <span>{selectedProduct?.name || 'Product Details'}</span>
                 </Breadcrumbs>
-                
-                    {selectedProduct && (
+
+                {selectedProduct && (
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6} md={5}>
                             <img src={selectedProduct.image} alt={selectedProduct.name} className='products-thumb' />
@@ -71,68 +77,56 @@ const ProductDetails = () => {
                         </Grid>
                     </Grid>
                 )}
+               
+
                 <AtomTabs
                     value={currentTab}
                     variant={breakPointIpad ? 'standard' : 'scrollable'}
                     scrollButtons={true}
                     onChange={handleChange}
                 >
-                    {TAB_LIST}
+
+                     
+                     {/* {selectedProduct?.productDetails?.sections?.map((section, index) => ({
+                        label: section.title,
+                        text: section.title,
+                        key: index
+                    }))} */}
+                    {tabItems}
+
+                    
                 </AtomTabs>
-                <AtomTabPanel value={currentTab} index={0} className='tab-panel'>
-                    <Grid container spacing={{ xs: 5, md: 8 }}>
-                        <Grid size={{ xs: 12, sm: 6 }}>
-                            <Table>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell align="center">INCI NAME</TableCell>
-                                        <TableCell>Cetylpyridinium chloride</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">CHEMICAL NAME</TableCell>
-                                        <TableCell>1-Hexadecylpyridin-1-ium chloride</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">MOLECULAR WEIGHT</TableCell>
-                                        <TableCell>358.01 g/mol</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">CAS NUMBER</TableCell>
-                                        <TableCell>6004-24-6</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </Grid>
-                        <Grid size={{ xs: 12, sm: 6 }}>
-                            <Table>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell align="center">EINECS NUMBER</TableCell>
-                                        <TableCell>204-593-9</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">ODOUR</TableCell>
-                                        <TableCell>Faint odour</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">APPEARANCE</TableCell>
-                                        <TableCell>Cetylpyridinium chloride</TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell align="center">SOLUBILITY</TableCell>
-                                        <TableCell>Sparingly soluble in water but more soluble in organic</TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </Grid>
-                    </Grid>
-                </AtomTabPanel>
-                <AtomTabPanel value={currentTab} index={1} className='tab-panel'>
-                    <p className='description'>Cetylpyridinium chloride (CPC) is commonly found in mouthwashes, toothpaste, and throat lozenges. These products, serve as an antiseptic agent to help reduce oral bacteria, plaque formation, gingivitis, and bad breath. It may also be used in pharmaceutical formulations for oral hygiene or throat infection. In mouthwash formulations, CPC concentrations range from 0.045% to 0.1% (w/v) as an active ingredient. Users typically rinse with the mouthwash for about 30 seconds to 1 minute before spitting it out. Toothpaste; concentrations ranging from 0.05% to 0.15% (w/w). Throat Lozenges; concentrations ranging from 1 mg to 4 mg per lozenge.</p>
-                </AtomTabPanel>
-                <AtomTabPanel value={currentTab} index={2} className='tab-panel'>
-                    <p className='description'>Store CPC in tightly sealed containers at room temperature (typically between 20°C to 25°C or 68°F to 77°F). Avoid exposure to extreme temperatures. CPC may be sensitive to extreme pH levels, so it’ s advisable to avoid highly acidic or alkaline environments during storage.</p>
-                </AtomTabPanel>
+                {selectedProduct?.productDetails?.sections?.map((section, index) => (
+                    <AtomTabPanel key={index} value={currentTab} index={index} className="tab-panel">
+                        {section.fields?.length > 0 && section.fields[0]?.label ? (
+                            <Grid container spacing={{ xs: 5, md: 8 }}>
+                                {section.fields.reduce((acc, field, i) => {
+                                    const colIndex = Math.floor(i / 4);
+                                    if (!acc[colIndex]) acc[colIndex] = [];
+                                    acc[colIndex].push(field);
+                                    return acc;
+                                }, []).map((group, colIdx) => (
+                                    <Grid key={colIdx} item xs={12} sm={6}>
+                                        <Table>
+                                            <TableBody>
+                                                {group.map((field, idx) => (
+                                                    <TableRow key={idx}>
+                                                        <TableCell align="center">{field.label}</TableCell>
+                                                        <TableCell>{field.value}</TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        ) : (
+                            <p className="description">{section.fields[0]?.value}</p>
+                        )}
+                    </AtomTabPanel>
+                ))}
+
+
             </Container>
             <div className='discover-offices'>
                 <Container className='container'>
