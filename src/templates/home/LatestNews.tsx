@@ -1,3 +1,4 @@
+// LatestNews.tsx (Modified)
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid2';
 import { Container, useMediaQuery, CircularProgress } from '@mui/material';
@@ -106,13 +107,15 @@ const LatestNews: React.FC<LatestNewsProps> = ({ limit = 6 }) => {
                 )}
 
                 <Grid container justifyContent={"center"} className="mt-12">
-                    <AtomButton
-                        variant={'outlined'}
-                        size={'large'}
-                        endIcon={<img src={ChevronRight} alt='' />}
-                    >
-                        view more
-                    </AtomButton>
+                    <Link to="/all-news"> {/* Use Link to navigate */}
+                        <AtomButton
+                            variant={'outlined'}
+                            size={'large'}
+                            endIcon={<img src={ChevronRight} alt='' />}
+                        >
+                            view more
+                        </AtomButton>
+                    </Link>
                 </Grid>
             </Container>
         </div>

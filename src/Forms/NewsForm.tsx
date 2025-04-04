@@ -40,7 +40,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
         if (file) {
             setThumbnailImage(file);
             setThumbnailPreview(URL.createObjectURL(file));
-             if (errors.thumbnailImage) {
+            if (errors.thumbnailImage) {
                 setErrors(prev => ({ ...prev, thumbnailImage: undefined }));
             }
         } else {
@@ -56,7 +56,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
         if (files) {
             const previewUrls = Array.from(files).map(file => URL.createObjectURL(file));
             setImagePreviews(previewUrls);
-             if (errors.images) {
+            if (errors.images) {
                 setErrors(prev => ({ ...prev, images: undefined }));
             }
         } else {
@@ -66,27 +66,27 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
 
     const handleDescriptionChange = (newContent: string) => {
         setDescription(newContent);
-         if (errors.description) {
-             const plainTextDescription = newContent.replace(/<[^>]*>/g, '').trim();
-             if(plainTextDescription) {
-                 setErrors(prev => ({ ...prev, description: undefined }));
-             }
+        if (errors.description) {
+            const plainTextDescription = newContent.replace(/<[^>]*>/g, '').trim();
+            if (plainTextDescription) {
+                setErrors(prev => ({ ...prev, description: undefined }));
+            }
         }
     };
 
-     const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, fieldName: keyof NewsFormErrors) =>
+    const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>, fieldName: keyof NewsFormErrors) =>
         (event: React.ChangeEvent<HTMLInputElement>) => {
-        setter(event.target.value);
-        if (errors[fieldName]) {
-             setErrors(prev => ({ ...prev, [fieldName]: undefined }));
-        }
-    };
+            setter(event.target.value);
+            if (errors[fieldName]) {
+                setErrors(prev => ({ ...prev, [fieldName]: undefined }));
+            }
+        };
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (isValid()) {
-             if(thumbnailImage) {
+            if (thumbnailImage) {
                 onSubmit({
                     title,
                     heading,
@@ -94,9 +94,9 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
                     thumbnailImage,
                     images,
                 });
-             } else {
-                 setErrors(prev => ({ ...prev, thumbnailImage: 'Thumbnail image is required.' }));
-             }
+            } else {
+                setErrors(prev => ({ ...prev, thumbnailImage: 'Thumbnail image is required.' }));
+            }
         }
     };
 
@@ -109,7 +109,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
         };
     }, [thumbnailPreview]);
 
-     useEffect(() => {
+    useEffect(() => {
         const currentImagePreviews = [...imagePreviews];
         return () => {
             currentImagePreviews.forEach(url => URL.revokeObjectURL(url));
@@ -119,89 +119,94 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.formContainer} noValidate>
-            <h2>News Article</h2>
+            <div className={styles.formrow}>
 
-            <div className={styles.formGroup}>
-                <label htmlFor="title">Title</label>
-                <input
-                    type="text"
-                    id="title"
-                    value={title}
-                    onChange={handleInputChange(setTitle, 'title')}
-                    aria-describedby="titleError"
-                    aria-invalid={!!errors.title}
-                />
-                {errors.title && <p id="titleError" className={styles.errorMessage}>{errors.title}</p>}
-            </div>
-
-            <div className={styles.formGroup}>
-                <label htmlFor="heading">Heading</label>
-                <input
-                    type="text"
-                    id="heading"
-                    value={heading}
-                    onChange={handleInputChange(setHeading, 'heading')}
-                    aria-describedby="headingError"
-                     aria-invalid={!!errors.heading}
-                />
-                {errors.heading && <p id="headingError" className={styles.errorMessage}>{errors.heading}</p>}
-            </div>
-
-            <div className={styles.formGroup}>
-                <label htmlFor="description">Description</label>
-                 <div className={styles.editorContainer} aria-describedby="descriptionError">
-                     <JoditEditor
-                        ref={editor}
-                        value={description}
-                        config={config}
-                        onBlur={handleDescriptionChange}
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        id="title"
+                        value={title}
+                        onChange={handleInputChange(setTitle, 'title')}
+                        aria-describedby="titleError"
+                        aria-invalid={!!errors.title}
+                        placeholder='title'
                     />
-                 </div>
+                    {errors.title && <p id="titleError" className={styles.errorMessage}>{errors.title}</p>}
+                </div>
 
-                {errors.description && <p id="descriptionError" className={styles.errorMessage}>{errors.description}</p>}
+                <div className={styles.formGroup}>
+                    <input
+                        type="text"
+                        id="heading"
+                        value={heading}
+                        onChange={handleInputChange(setHeading, 'heading')}
+                        aria-describedby="headingError"
+                        aria-invalid={!!errors.heading}
+                        placeholder='heading'
+                    />
+                    {errors.heading && <p id="headingError" className={styles.errorMessage}>{errors.heading}</p>}
+                </div>
             </div>
 
-            <div className={styles.formGroup}>
-                <label htmlFor="thumbnailImage">Thumbnail Image (Required)</label>
-                <input
-                    type="file"
-                    id="thumbnailImage"
-                    accept="image/*"
-                    onChange={handleThumbnailChange}
-                    aria-describedby="thumbnailError"
-                    aria-invalid={!!errors.thumbnailImage}
-                />
-                 {thumbnailPreview && (
-                    <div className={styles.thumbnailPreviewContainer}>
-                        <p>Preview:</p>
-                        <img src={thumbnailPreview} alt="Thumbnail Preview" className={styles.thumbnailPreview} />
+            <div className={styles.formrow}>
+                <div className={styles.formGroup}>
+                   
+                    <input
+                        type="file"
+                        id="thumbnailImage"
+                        accept="image/*"
+                        onChange={handleThumbnailChange}
+                        aria-describedby="thumbnailError"
+                        aria-invalid={!!errors.thumbnailImage}
+                        placeholder='thumbnailimage'
+                    />
+                    {thumbnailPreview && (
+                        <div className={styles.thumbnailPreviewContainer}>
+                            <p>Preview:</p>
+                            <img src={thumbnailPreview} alt="Thumbnail Preview" className={styles.thumbnailPreview} />
+                        </div>
+                    )}
+                    {errors.thumbnailImage && <p id="thumbnailError" className={styles.errorMessage}>{errors.thumbnailImage}</p>}
+                </div>
+                <div className={styles.formGroup}>
+                   
+                    <input
+                        type="file"
+                        id="images"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImagesChange}
+                        aria-describedby="imagesError"
+                        aria-invalid={!!errors.images}
+                    />
+                    {imagePreviews.length > 0 && (
+                        <div className={styles.imagePreviewContainer}>
+                            <p>Previews:</p>
+                            {imagePreviews.map((previewUrl, index) => (
+                                <img key={index} src={previewUrl} alt={`Image Preview ${index + 1}`} className={styles.imagePreview} />
+                            ))}
+                        </div>
+                    )}
+                    {errors.images && <p id="imagesError" className={styles.errorMessage}>{errors.images}</p>}
+                </div>
+            </div>
+            <div className={styles.formrow}>
+                <div className={styles.formGroup}>
+                    <label htmlFor="description">Description</label>
+                    <div className={styles.editorContainer} aria-describedby="descriptionError">
+                        <JoditEditor
+                            ref={editor}
+                            value={description}
+                            config={config}
+                            onBlur={handleDescriptionChange}
+                        />
                     </div>
-                 )}
-                {errors.thumbnailImage && <p id="thumbnailError" className={styles.errorMessage}>{errors.thumbnailImage}</p>}
-            </div>
 
-            <div className={styles.formGroup}>
-                <label htmlFor="images">Other Images (Optional)</label>
-                <input
-                    type="file"
-                    id="images"
-                    accept="image/*"
-                    multiple
-                    onChange={handleImagesChange}
-                     aria-describedby="imagesError"
-                     aria-invalid={!!errors.images}
-                />
-                 {imagePreviews.length > 0 && (
-                    <div className={styles.imagePreviewContainer}>
-                        <p>Previews:</p>
-                        {imagePreviews.map((previewUrl, index) => (
-                             <img key={index} src={previewUrl} alt={`Image Preview ${index + 1}`} className={styles.imagePreview} />
-                        ))}
-                    </div>
-                 )}
-                 {errors.images && <p id="imagesError" className={styles.errorMessage}>{errors.images}</p>}
-            </div>
+                    {errors.description && <p id="descriptionError" className={styles.errorMessage}>{errors.description}</p>}
+                </div>
 
+
+            </div>
             <button type="submit" className={styles.submitButton} disabled={isLoading}>
                 {isLoading ? 'Saving...' : 'Create News'}
             </button>

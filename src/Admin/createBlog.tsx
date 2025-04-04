@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import NewsForm from '../Forms/NewsForm';
-import { NewsFormData } from '../Forms/newsFormUtils';
+import BlogForm from '../Forms/blogForm'; // Assuming you have a BlogForm component
+import { BLogFormData } from '../Forms/blogFormUtils'; // Assuming you have BlogFormData type
 import { db } from '../Firebase/firebaseConfig';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import styles from './createNews.module.css';
+import styles from './createBlog.module.css'; // Create a separate CSS module for blogs
 
 const toBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -14,14 +14,14 @@ const toBase64 = (file: File): Promise<string> => {
     });
 };
 
-const CreateNews: React.FC = () => {
+const CreateBlog: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [statusMessage, setStatusMessage] = useState<string | null>(null);
     const [isError, setIsError] = useState(false);
 
-    const handleCreateNews = async (data: NewsFormData) => {
+    const handleCreateBlog = async (data: BLogFormData) => {
         setIsLoading(true);
-        setStatusMessage('Starting submission...');
+        setStatusMessage('Starting blog submission...');
         setIsError(false);
 
         if (!data.thumbnailImage) {
@@ -46,23 +46,23 @@ const CreateNews: React.FC = () => {
                 setStatusMessage('Images converted to Base64.');
             }
 
-            const newsDataToSave = {
+            const blogDataToSave = {
                 title: data.title,
                 heading: data.heading,
-                description: data.description,
+                content: data.description, // Assuming your blog form has a 'content' field
                 thumbnailBase64: thumbnailBase64,
                 imageBase64s: imageBase64s,
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
             };
 
-            setStatusMessage('Saving news data to database...');
-            await addDoc(collection(db, "news"), newsDataToSave);
-            setStatusMessage('News article created successfully!');
+            setStatusMessage('Saving blog data to database...');
+            await addDoc(collection(db, "blogs"), blogDataToSave); // Use "blogs" collection
+            setStatusMessage('Blog article created successfully!');
             setIsError(false);
 
         } catch (error: any) {
-            setStatusMessage(`Error: ${error.message || 'Failed to create news article.'}`);
+            setStatusMessage(`Error: ${error.message || 'Failed to create blog article.'}`);
             setIsError(true);
         } finally {
             setIsLoading(false);
@@ -70,16 +70,16 @@ const CreateNews: React.FC = () => {
     };
 
     return (
-        <div className={styles.createNewsContainer}>
-            <h2>Create News</h2>
+        <div className={styles.createBlogContainer}>
+            <h2>Admin - Create Blog</h2>
             {statusMessage && (
                 <p className={`${styles.statusMessage} ${isError ? styles.statusMessageerror : styles.statusMessageSuccess}`}>
                     {statusMessage}
                 </p>
             )}
-            <NewsForm onSubmit={handleCreateNews} isLoading={isLoading} />
+            <BlogForm onSubmit={handleCreateBlog} isLoading={isLoading} />
         </div>
     );
 };
 
-export default CreateNews;
+export default CreateBlog;
