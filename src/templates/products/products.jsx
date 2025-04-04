@@ -38,7 +38,7 @@ const ProductsTemplate = () => {
                                     <div className="overlay">
                                         {category.name}
                                         <AtomButton
-                                            onClick={() => navigate(`/category/${category.id}`)}
+                                            onClick={() => navigate(`/category/${category.name}`,{state:{categoryName:category.name}})}
                                         >
                                             VIEW MORE
                                             <img src={ChevronRight} alt='' />

@@ -3,20 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../redux/slice/productlistSlice";
 import { input, Button, MenuItem } from "@mui/material";
 import { fetchCategories, setSelectedCategory } from "../redux/slice/categoriesSlice";
+import ProductDetailForm from "../Forms/ProductDetailForm";
 
 const ProductList = () => {
     const dispatch = useDispatch();
-    // const [selectCategory, setSelectedCategory] = useState("")
+    
     const [product, setProduct] = useState({
         name: "",
         subtitle: "",
         category: "",
         casNumber: "",
         base64Image: "",
-        productDeatails : [],
+        productDetails : [],
     });
     const { items: categories = [], loading: categoriesLoading, error } = useSelector((state) => state.categories)
     const { categoryId } = useSelector((state) => state.productlist)
+
+    const onSave = (data) =>{
+        setProduct((pre)=>({...pre, productDetails:data}));
+    }
 
     useEffect(() => {
         dispatch(fetchCategories());
@@ -62,6 +67,7 @@ const ProductList = () => {
             alert("Please select an image.");
             return;
         }
+        console.log(product);
         dispatch(addProduct(product));
         setProduct({ name: "", subtitle: "", category: "", casNumber: "", base64Image: "" });
     };
@@ -116,6 +122,7 @@ const ProductList = () => {
                     {product.base64Image && (
                         <img src={product.base64Image} alt="Preview" style={{ width: "100px", height: "100px" }} />
                     )}
+                    <ProductDetailForm onSave={onSave}/>
                     <Button type="submit" variant="contained" color="primary">
                         Add Product
                     </Button>

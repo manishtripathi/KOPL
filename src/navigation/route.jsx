@@ -12,12 +12,15 @@ import ContactUs from '../pages/contactUs/contactUs'
 import ResearchCentre from '../pages/researchCentre/researchCentre'
 import Media from '../pages/media/media'
 import AntibacterialProducts from '../pages/antibacterialProducts/antibacterialProducts'
-import CetylpyridiniumChloridMonohydrate from '../pages/cetylpyridiniumChloridMonohydrate/cetylpyridiniumChloridMonohydrate'
+//import CetylpyridiniumChloridMonohydrate from '../pages/cetylpyridiniumChloridMonohydrate/cetylpyridiniumChloridMonohydrate'
 import Certifications from '../pages/certifications/certifications'
 import ManufacturingUnits from '../pages/manufacturingUnits/manufacturingUnits'
 import Blog from '../pages/blog/blog'
 import NewsEvent from '../pages/newsEvent/newsEvent'
 import Careers from '../pages/careers/careers'
+import CreateNews from '../Admin/createNews'
+import NewsDetail from '../templates/home/NewsDetail';  
+import ProductDetails from '../templates/cetylpyridiniumChloridMonohydrate/ProductDetails'
 
 const RootRouter = () => {
     return (
@@ -56,7 +59,7 @@ const RootRouter = () => {
             <Route path="/research-centre" element={<ResearchCentre />} />
             <Route path="/media" element={<Media />} />
             <Route path="/antibacterial-products" element={<AntibacterialProducts />} />
-            <Route path="/cetylpyridinium-chloride-monohydrate" element={<CetylpyridiniumChloridMonohydrate />} />
+            {/* <Route path="/cetylpyridinium-chloride-monohydrate" element={<CetylpyridiniumChloridMonohydrate />} /> */}
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/manufacturing-units" element={<ManufacturingUnits />} />
             <Route path="/blog" element={<Blog />} />
@@ -64,6 +67,11 @@ const RootRouter = () => {
             <Route path="/careers" element={<Careers />} />
             <Route path="/admincategories" element={<AdminCategories />} />
             <Route path='/productlist' element={<ProductList/>} />
+            <Route path="/createnews" element={<CreateNews/>}/>
+            <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/category/:categoryName" element={<AntibacterialProducts />} />
+            <Route path="/product-detail/" element={<ProductDetails />} />
+
 
             </Routes>
 

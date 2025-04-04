@@ -1,4 +1,4 @@
-import CetylpyridiniumChloridMonohydrateTemplate from '../../templates/cetylpyridiniumChloridMonohydrate/cetylpyridiniumChloridMonohydrate'
+import CetylpyridiniumChloridMonohydrateTemplate from '../../templates/cetylpyridiniumChloridMonohydrate/ProductDetails'
 
 const CetylpyridiniumChloridMonohydrate = () => {
     return (
