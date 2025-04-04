@@ -1,25 +1,24 @@
 .news-detail-page {
     padding: 20px;
-    max-width: 960px;
     margin: 0 auto;
     font-family: sans-serif;
     color: #333; /* Set default text color here */
     background-color: #fff; /* Explicit background for consistency */
 
     .news-detail-header {
-        margin-bottom: 30px; /* Slightly increased */
+        margin-bottom: 30px; 
         text-align: center;
 
         h1 {
-            font-size: 2.75rem; /* A bit larger */
-            font-weight: 700; /* Stronger bold */
+            font-size: 2.75rem; 
+            font-weight: 700; 
             margin-bottom: 0.5em;
-            line-height: 1.2; /* Improve spacing around the title */
+            line-height: 1.2; 
         }
 
         p.date {
             font-size: 0.9rem;
-            color: #666; /* A bit darker than #777 */
+            color: #666; 
         }
     }
 
