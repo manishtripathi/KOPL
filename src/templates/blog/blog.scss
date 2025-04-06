@@ -1,0 +1,155 @@
+@import '../../styles/variable.scss';
+@import '../../styles/spacing.scss';
+
+.media {
+    .gradient-section {
+        background: rgb(21, 21, 21);
+        background: radial-gradient(circle, rgba(21, 21, 21, 1) 0%, rgba(29, 30, 53, 1) 100%); 
+        width: 100%;     
+        padding: 13.125rem 0;
+        position: relative;
+        @include laptop {
+            padding: 12.5rem 0 6.5rem 0;
+        }
+        .pattern-top {
+            position: absolute;
+            top: 0;
+            right: 0;
+            @include desktop {
+                display: block;
+            }
+            img {
+                height: 10rem;
+                opacity: 0.1;
+                @include desktop {
+                    height: 14.375rem;
+                }
+            }
+        }
+        .pattern-bottom {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transform: rotate(-180deg);
+            @include desktop {
+                display: block;
+            }
+            img {
+                height: 10rem;
+                opacity: 0.1;
+                @include desktop {
+                    height: 14.375rem;
+                }
+            }
+        }
+        h1 {
+            color: $white;
+            font-size: 2rem;
+            line-height: 3rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 0 0.5rem 0;
+            @include laptop {
+                font-size: 2.8125rem;
+                line-height: 4.25rem;
+            }
+        }  
+        p {
+            color: $white;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin: 0 0 2.5rem 0;
+            @include laptop {
+                font-size: 1.25rem;
+                line-height: 2rem;
+            }
+        }
+    }
+    .all-updates {
+        background: $light-blue;
+        width: 100%;
+        padding: 5.5rem 0;
+        @include laptop {
+            padding: 6.5rem 0;
+        }
+        .card {
+            margin-bottom: 1.5rem;
+            @include laptop {
+                margin-bottom: 0;
+            }
+            .thumb {
+                width: 100%;
+                margin-bottom: -5rem;
+                @include border-radius(0.5rem);
+                @include laptop {
+                    margin-bottom: -9.75rem;
+                }
+            }
+            .title {
+                background: $default-blue;
+                color: $white;
+                font-size: 1rem;
+                line-height: 1.25rem;
+                font-weight: 600;
+                padding: 0.5rem 1.5rem 1.625rem 1.5rem;
+                display: inline-block;
+                @include border-radius(0.5rem);
+            }
+            .white-section {
+                background: $white;
+                margin: -1.125rem 0 0 0;
+                padding: 1.5rem;
+                position: relative;
+                @include border-radius(0.5rem);
+                @include tablet {
+                    padding: 1rem;
+                }
+                @include laptop {
+                    padding: 1.5rem;
+                }
+                h5 {
+                    color: $black-color;
+                    font-size: 1.25rem;
+                    line-height: 2rem;
+                    font-weight: 600;
+                    line-clamp: 2;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
+                    display: -webkit-box;
+                    @include tablet {
+                        font-size: 1rem;
+                        line-height: 1.5rem;
+                    }
+                    @include laptop {
+                        font-size: 1.25rem;
+                        line-height: 2rem;
+                    }
+                }
+                p {
+                    color: $black-color;
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                    font-weight: 400;
+                    margin: 0.5rem 0 2rem 0;
+                    line-clamp: 2;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;  
+                    overflow: hidden;
+                    display: -webkit-box;
+                }
+                .read-article {
+                    color: $default-red;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                    font-weight: 600;
+                    align-items: center;
+                    gap: 0.5rem;
+                    display: flex;
+                }
+            }
+        }
+    }
+}

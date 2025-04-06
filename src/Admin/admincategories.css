@@ -1,0 +1,17 @@
+.admin-addcategories {
+    padding: 9.5rem 15.5rem;
+    
+}
+
+.form-addcategories input{
+    background: rgba(255, 255, 255, 0.32);
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 0.125rem solid #CACACA;
+    border-radius: 0.375rem;
+}
+.form-addcategories{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}

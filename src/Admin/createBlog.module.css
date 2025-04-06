@@ -1,0 +1,28 @@
+/* createBlog.module.css */
+
+.createBlogContainer {
+    margin: auto;
+    padding: 9.5rem 15.5rem;
+}
+
+.statusMessage {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.statusMessage.statusMessageerror {
+    background-color: rgba(244, 67, 54, 0.15);
+    border: 1px solid #f44336;
+    color: #f44336;
+    font-weight: 500;
+}
+
+.statusMessage.statusMessageSuccess {
+    background-color: rgba(76, 175, 80, 0.15);
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+/* Add more blog-specific styling as needed */

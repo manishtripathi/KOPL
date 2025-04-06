@@ -1,0 +1,104 @@
+@import '../../styles/variable.scss';
+@import '../../styles/spacing.scss';
+
+.manufacturing-units {
+    .gradient-section {
+        background: rgb(21, 21, 21);
+        background: radial-gradient(circle, rgba(21, 21, 21, 1) 0%, rgba(29, 30, 53, 1) 100%); 
+        width: 100%;     
+        padding: 10rem 0 5rem 0;
+        position: relative;
+        @include laptop {
+            padding: 12.5rem 0 6.5rem 0;
+        }
+        h1 {
+            color: $white;
+            font-size: 2rem;
+            line-height: 3rem;
+            font-weight: 600;
+            padding: 0 0 0.5rem 0;
+            @include laptop {
+                font-size: 2.8125rem;
+                line-height: 4.25rem;
+            }
+        }  
+        p {
+            color: $white;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 300;
+            margin: 1rem 0 0 0;
+        }
+        .MuiButtonBase-root {
+            margin-top: 2rem;
+        }
+        .map {
+            width: 100%;
+            margin: 5rem 0 0 0;
+            @include laptop {
+                width: auto;
+            }
+        }
+    }
+    .regulatory-certifications {
+        background: $light-blue;
+        width: 100%;
+        padding: 6.5rem 0;
+        h3 {
+            color: $black-color;
+            font-size: 2rem;
+            line-height: 3rem;
+            font-weight: 600;
+            padding: 0 0 3.5rem 0;
+            text-align: center;
+            @include laptop {
+                font-size: 2.8125rem;
+                line-height: 4.25rem;
+            }
+        }
+        .slick-slider {
+            overflow: hidden;
+            .slick-list {
+                .slick-slide {
+                    vertical-align: top;
+                    display: inline-block;
+                    .white-circle {
+                        background: $white;
+                        width: 10.5rem;
+                        height: 10.5rem;
+                        justify-content: center;
+                        align-items: center;
+                        display: flex;
+                        @include border-radius(5.625rem);
+                        img {
+                            width: 70%;
+                        }
+                    }
+                }
+            }
+            .slick-dots {
+                margin: 3rem 0 0 0;
+                text-align: center;
+                li {
+                    display: inline-block;
+                    button {
+                        background: $dark-grey;
+                        width: 0.5rem;
+                        height: 0.5rem;
+                        border: none;
+                        font-size: 0;
+                        margin: 0 0.25rem;
+                        padding: 0;
+                        display: block;
+                        @include border-radius(0.5rem);
+                    }
+                    &.slick-active {
+                        button {
+                            background: $default-red;
+                        }                        
+                    }
+                }                
+            }
+        }
+    }
+}

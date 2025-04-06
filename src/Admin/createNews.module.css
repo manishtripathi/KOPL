@@ -1,0 +1,10 @@
+.createNewsContainer {
+    margin: auto;
+    padding: 9.5rem 15.5rem;
+    border-radius: 20px;   
+    font-weight: 500;
+}
+
+.statusMessage.error {
+    font-weight: 500;
+}
