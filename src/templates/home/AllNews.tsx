@@ -4,18 +4,23 @@ import { Container, CircularProgress, Card, CardMedia, CardContent, Typography, 
 import { Link } from "react-router-dom";
 import getNewsFromFirebase, { NewsItem } from "../../services/newsService";
 import DOMPurify from "dompurify";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllNews } from "../../redux/slice/configSlice";
 
 const AllNews: React.FC = () => {
     const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const dispatch = useDispatch<any>();
+    const {news} = useSelector((state:any)=>state.configs);
 
     useEffect(() => {
-        const fetchAllNews = async () => {
+        const fetchNews = async () => {
             try {
                 setLoading(true);
-                const allNewsData = await getNewsFromFirebase(100);
-                setNewsItems(allNewsData);
+                debugger
+                const allNewsData = await dispatch(fetchAllNews());
+                // setNewsItems(allNewsData);
                 setError(null);
             } catch (err) {
                 console.error("Error fetching all news:", err);
@@ -25,7 +30,7 @@ const AllNews: React.FC = () => {
             }
         };
 
-        fetchAllNews();
+        fetchNews();
     }, []);
 
     return (
@@ -44,7 +49,7 @@ const AllNews: React.FC = () => {
                 </Typography>
             ) : (
                 <Grid container spacing={4}>
-                    {newsItems.map((item) => {
+                    {news?.map((item:any) => {
                         const sanitizedDescription = DOMPurify.sanitize(item.description || "");
                         const shortDescription = sanitizedDescription.length > 120
                             ? `${sanitizedDescription.substring(0, 120)}...`
