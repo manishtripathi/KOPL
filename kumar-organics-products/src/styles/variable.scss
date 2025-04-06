@@ -1,0 +1,57 @@
+$font-family: "Work Sans", serif;
+$default-blue: #131542;
+$default-red: #E41F28;
+$white: #FFFFFF;
+$off-white: #F1F1F1;
+$light-blue: #EDF0FF;
+$dark-blue: #D6DCFF;
+$pink: #EA5858;
+$secondary-color: #252525;
+$grey-color: #F4F4F4;
+$dark-grey: #B5BBBE;
+$grey: #5E5E5E;
+$border-color: #EEEEEE;
+$placeholder-color: #767676;
+$light-black: #323232;
+$black-color: #1A1A1A;
+$light-grey: #CACACA;
+$grey-shade: #E0E5E5;
+$purple: #926AFF;
+$yellow: #F99500;
+$green: #7BCD12;
+$grey-shade70: rgba(224, 229, 229, 0.7);
+$grey-opacity50: rgba(101, 101, 101, 0.5);
+$black-opacity50: rgba(0, 0, 0, 0.5);
+$black-opacity70: rgba(0, 0, 0, 0.7);
+$black-opacity30: rgba(0, 0, 0, 0.3);
+$black-opacity40: rgba(0, 0, 0, 0.4);
+$white-opacity32: rgba(255, 255, 255, 0.32);
+$white-opacity40: rgba(255, 255, 255, 0.40);  
+
+$breakpoint-tablet: 600px;
+$breakpoint-laptop: 900px;
+$breakpoint-desktop: 1200px;
+
+@mixin tablet {
+    @media (min-width: #{$breakpoint-tablet}) {
+        @content;
+    }
+}
+  
+@mixin laptop {
+    @media (min-width: #{$breakpoint-laptop}) {
+        @content;
+    }
+}
+  
+@mixin desktop {
+    @media (min-width: #{$breakpoint-desktop}) {
+        @content;
+    }
+}
+
+@mixin border-radius($pixel...) {
+    -moz-border-radius: $pixel;
+    -webkit-border-radius: $pixel;
+    border-radius: $pixel;
+}

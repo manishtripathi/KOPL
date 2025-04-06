@@ -1,0 +1,304 @@
+@import '../../styles/variable.scss';
+
+.mobile-header {
+    background: $grey-opacity50;
+    width: calc(100% - 2rem);
+    padding: 0.625rem 1rem;
+    position: fixed;
+    top: 1.5rem;
+    left: 0;
+    right: 0;
+    z-index: 7;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    backdrop-filter: blur(0.75rem);
+    @include border-radius(3.5rem);
+    .logo {
+        width: 12.5rem;
+    }
+    .search-ico {
+        width: 1.75rem;
+        position: relative;
+        top: 0.125rem;
+        filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(0%) hue-rotate(329deg) brightness(105%) contrast(101%);
+    }
+    .sidebar {
+        background: $grey-color;
+        width: 98%;
+        height: 100vh;
+        position: fixed;
+        top: -1.5rem;
+        right: -110%;
+        padding: 1.5rem 0;
+        transition: all 0.5s ease;
+        overflow: auto;
+        &.show {
+            right: -1rem;
+        }
+        .dismiss {
+            position: absolute;
+            z-index: 3;
+            top: 2rem;
+            right: 1.5rem;
+            img {
+                filter: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(7436%) hue-rotate(204deg) brightness(85%) contrast(114%);
+            }
+        }
+        .single-anchor {
+            padding: 0 1.5rem;
+            .MuiButtonBase-root {
+                color: $secondary-color;
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+                font-weight: 600;
+                margin: 1rem 0;
+                padding: 0;
+                text-transform: uppercase;
+            }
+        }
+        .MuiAccordion-root {
+            background: transparent;
+            box-shadow: none;
+            margin: 0;
+            &::before {
+                display: none;
+            }
+            .MuiAccordion-heading {
+                .MuiButtonBase-root {
+                    padding: 0 1.5rem;
+                }
+                .MuiAccordionSummary-root {
+                    .MuiAccordionSummary-content {
+                        color: $secondary-color;
+                        font-size: 1.25rem;
+                        line-height: 1.75rem;
+                        font-weight: 600;
+                        margin: 1rem 0;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+            .MuiCollapse-root {
+                background: $white;
+                .MuiAccordionDetails-root {
+                    padding: 1rem 1.5rem;
+                    ul {
+                        li {
+                            padding: 0 0 1.5rem 0;
+                            &:last-child {
+                                padding: 0;
+                            }
+                            .MuiButtonBase-root {
+                                color: $secondary-color;
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                                font-weight: 400;
+                                padding: 0;
+                                text-align: left;
+                            }
+                        }
+                    }
+                }                
+            }
+        }
+    }
+}
+
+.header {
+    background: $grey-opacity50;
+    width: 100%;
+    padding: 0.625rem 2.5rem;
+    position: fixed;
+    top: 1.5rem;
+    left: 0;
+    right: 0;
+    z-index: 7;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    backdrop-filter: blur(0.75rem);
+    @include border-radius(3.5rem);
+    .logo {
+        @include laptop {
+            width: 12.5rem;
+        }
+        @include desktop {
+            width: auto;
+        }
+    }
+    &.transparent{
+        background: transparent;
+        backdrop-filter: blur(0);
+    }
+    ul {
+        &.menu {
+            align-items: center;
+            display: flex;
+            li {
+                padding: 0 0.875rem;
+                display: inline-block;
+                .MuiButton-root {
+                    color: $white;
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    transition: all 0.5s ease;
+                    position: relative;
+                    &:hover {
+                        color: $default-red;
+                    }
+                }
+                .MuiLink-root {
+                    color: $white;
+                    font-size: 0.875rem;
+                    line-height: 1.25rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    transition: all 0.5s ease;
+                    position: relative;
+                    &:hover {
+                        color: $default-red;
+                    }
+                }
+                &.sub-menu {
+                    .MuiLink-root {
+                        padding-right: 1.375rem;
+                        .caret {
+                            position: absolute;
+                            top: 0.0625rem;
+                            right: 0.25rem;
+                        }
+                    }
+                }
+                &.highlight {
+                    & > .MuiLink-root {
+                        color: $default-red;
+                    }
+                }
+                .search-ico {
+                    width: 1.5rem;
+                    position: relative;
+                    top: 0.125rem;
+                    cursor: pointer;
+                    filter: brightness(0) saturate(100%) invert(99%) sepia(100%) saturate(0%) hue-rotate(329deg) brightness(105%) contrast(101%);
+                }
+                .sub-dropdown {
+                    position: fixed;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    height: calc(96vh - 8.75rem);
+                    margin: 2.5rem 0 0 0;
+                    overflow: auto;
+                    &::-webkit-scrollbar {
+                        width: 0.5rem;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: #f1f1f1;
+                        @include border-radius(0.5rem);
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #888;
+                        @include border-radius(0.5rem);
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        &:hover {
+                            background: #959595;
+                        }
+                    }
+                    .dismiss-icon {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                    }
+                    ul {
+                        li {
+                            margin: 0 0 0.5rem 0;
+                            padding: 0.5rem;
+                            display: block;
+                            .MuiButton-root {
+                                color: $white;
+                                font-size: 1.125rem;
+                                line-height: 2rem;
+                                font-weight: 400;
+                                text-transform: none;
+                                padding: 0;
+                                justify-content: flex-start;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header-search {
+        width: 50%;
+        height: 2.75rem;
+        border: 0.0625rem solid $white;
+        @include border-radius(1.5rem);
+        .MuiInputBase-root {
+            height: 2.75rem;
+            border: none;
+            .close-icon {
+                cursor: pointer;
+            }
+            .MuiInputBase-input {
+                color: $white;
+                font-size: 1.25rem;
+                line-height: 1.5rem;
+                font-weight: 400;
+                padding: 0.75rem;
+                ::-webkit-input-placeholder {
+                    color: $white;
+                    opacity: 1;
+                }
+                ::-moz-placeholder {
+                    color: $white;
+                    opacity: 1;
+                }
+                :-ms-input-placeholder {
+                    color: $white;
+                    opacity: 1;
+                }
+                :-moz-placeholder {
+                    color: $white;
+                    opacity: 1;
+                }
+            }
+            img {
+                width: 1.5rem;
+                filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+            }
+            .MuiOutlinedInput-notchedOutline {
+                display: none;
+            }
+        }
+    }
+}
+.backdrop {
+    background: $black-opacity70;
+    backdrop-filter: blur(0.5rem);
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: block;
+    &::before {
+        background: $black-opacity70;
+        content: '';
+        width: 100%;
+        height: 0.0625rem;
+        position: absolute;
+        top: 6.25rem;
+        display: block;
+    }
+}
