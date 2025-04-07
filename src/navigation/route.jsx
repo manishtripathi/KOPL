@@ -60,7 +60,7 @@ const RootRouter = () => {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/research-centre" element={<ResearchCentre />} />
             <Route path="/media" element={<Media />} />
-            <Route path="/antibacterial-products" element={<AntibacterialProducts />} />
+            {/* <Route path="/antibacterial-products" element={<AntibacterialProducts />} /> */}
             {/* <Route path="/cetylpyridinium-chloride-monohydrate" element={<CetylpyridiniumChloridMonohydrate />} /> */}
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/manufacturing-units" element={<ManufacturingUnits />} />

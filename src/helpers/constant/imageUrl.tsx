@@ -131,6 +131,17 @@ import bureuVeritas from '../../icon/bureuVeritas.png'
 import Facebook from '../../icon/facebook.svg'
 import Twitter from '../../icon/twitter.svg'
 import Linkedin from '../../icon/linkedin.svg'
+import ISOGreen from '../../icon/ISOGreen.png'
+import sattvikCouncil from '../../icon/sattvikCouncil.png'
+import ecocert from '../../icon/ecocert.png'
+import submergedFermentationGraph from '../../icon/submergedFermentationGraph.jpg'
+import submergedFermentation from '../../icon/submergedFermentation.jpg'
+import Clothes from '../../icon/Clothes.jpg'
+import downstream from '../../icon/downstream.jpg'
+import thumb2 from '../../icon/thumb2.jpg'
+import manufacturingUnit1 from '../../icon/manufacturingUnit1.jpg'
+import thumb1 from '../../icon/thumb1.jpg'
+import Banner from '../../icon/banner.jpg'
 
 export {
     Antibacterial,
@@ -265,5 +276,17 @@ export {
     bureuVeritas,
     Facebook,
     Twitter,
-    Linkedin
+    Linkedin,
+    ISOGreen,
+    sattvikCouncil,
+    ecocert,
+    submergedFermentationGraph,
+    submergedFermentation,
+    Clothes,
+    downstream,
+    thumb2,
+    manufacturingUnit1,
+    thumb1,
+    Banner,
+    
 }

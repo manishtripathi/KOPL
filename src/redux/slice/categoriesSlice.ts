@@ -7,12 +7,12 @@ import { db, storage } from "../../Firebase/firebaseConfig";
 //import { error } from "console";
 
 
-export const fetchCategories = createAsyncThunk("categories/fetchcategories", async () => {
+export const fetchCategories = createAsyncThunk<any, void>("categories/fetchcategories", async () => {
     const querySnapshot = await getDocs(collection(db, "categories"));
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}))
 }) 
 
-    export const addCategory = createAsyncThunk(
+    export const addCategory = createAsyncThunk<any,any>(
         "categories/addCategories",
         async ({ name, imageFile, base64Image }) => {
           try {
@@ -30,7 +30,7 @@ export const fetchCategories = createAsyncThunk("categories/fetchcategories", as
             const docRef = await addDoc(collection(db, "categories"), categoryData);
       
             return { id: docRef.id, ...categoryData };
-          } catch (error) {
+          } catch (error:any) {
             console.error("Error uploading image:", error);
             throw new Error(error.message);
           }
@@ -39,7 +39,7 @@ export const fetchCategories = createAsyncThunk("categories/fetchcategories", as
       
     
 
-export const deleteCategories = createAsyncThunk("categories/deleteCategories", async (categoryId) => {
+export const deleteCategories = createAsyncThunk("categories/deleteCategories", async (categoryId:any) => {
        await deleteDoc(doc(db, "categories", categoryId));       
        return categoryId;
 })
@@ -47,7 +47,7 @@ export const deleteCategories = createAsyncThunk("categories/deleteCategories", 
 const categorySlice = createSlice({
     name: "categories",
     initialState: {
-        items: [],
+        items: <any>[],
         loading: false,
         error: null,
         image: null,
@@ -70,17 +70,17 @@ const categorySlice = createSlice({
             state.loading = false;
             state.items = action.payload;
         })
-        .addCase(fetchCategories.rejected, (state, action) => {
+        .addCase(fetchCategories.rejected, (state:any, action:any) => {
             state.loading = false;
             state.items = action.error.message;
         })
-        .addCase(addCategory.fulfilled, (state, action) => {
+        .addCase(addCategory.fulfilled, (state, action:any) => {
             state.items.push(action.payload)
             state.image = action.payload.image
         })
 
         .addCase(deleteCategories.fulfilled, (state, action) => {
-            state.items = state.items.filter(category => category.id !== action.payload);
+            state.items = state.items.filter((category:any) => category.id !== action.payload);
         })
     }
 }) 
