@@ -20,9 +20,14 @@ import NewsEvent from '../pages/newsEvent/newsEvent'
 import Careers from '../pages/careers/careers'
 import CreateNews from '../Admin/createNews'
 import NewsDetail from '../templates/home/NewsDetail';  
+import BlogsDetail from '../templates/home/BlogDetail';  
+
 import ProductDetails from '../templates/cetylpyridiniumChloridMonohydrate/ProductDetails'
 import AllNews from '../templates/home/AllNews';  // Adjust the path if needed
+import AllBlogs from '../templates/home/AllBlogs';  // Adjust the path if needed
+
 import CreateBlog from '../Admin/createBlog'
+import BlogDetail from '../templates/home/BlogDetail'
 
 const RootRouter = () => {
     return (
@@ -51,10 +56,14 @@ const RootRouter = () => {
             <Route path="/createblogs" element={<CreateBlog/>}/>
 
             <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+
             <Route path="/category/:categoryName" element={<AntibacterialProducts />} />
             <Route path="/product-detail/" element={<ProductDetails />} />
 
             <Route path="/all-news" element={<AllNews />} />
+            <Route path="/all-blogs" element={<AllBlogs />} />
+
 
 
 
