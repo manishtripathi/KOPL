@@ -26,27 +26,7 @@ import CreateBlog from '../Admin/createBlog'
 
 const RootRouter = () => {
     return (
-        // <React.Fragment>
-        //     <Routes>
-        //         <Route path="/" element={<Home />} />
-        //         <Route path="/who-we-are" element={<WhoWeAre />} />
-        //         <Route path="/organization" element={<Organization />} />
-        //         <Route path="/management" element={<Management />} />
-        //         <Route path="/sustainability" element={<Sustainability />} />
-        //         <Route path="/investors" element={<Investors />} />
-        //         <Route path="/products" element={<Products />} />
-        //         <Route path="/contact-us" element={<ContactUs />} />
-        //         <Route path="/research-centre" element={<ResearchCentre />} />
-        //         <Route path="/media" element={<Media />} />
-        //         <Route path="/antibacterial-products" element={<AntibacterialProducts />} />
-        //         <Route path="/cetylpyridinium-chloride-monohydrate" element={<CetylpyridiniumChloridMonohydrate />} />
-        //         <Route path="/certifications" element={<Certifications />} />
-        //         <Route path="/manufacturing-units" element={<ManufacturingUnits />} />
-        //         <Route path="/blog" element={<Blog />} />
-        //         <Route path="/news-events" element={<NewsEvent />} />
-        //         <Route path="/careers" element={<Careers />} />
-        //     </Routes>
-        // </React.Fragment>
+       
 
         <Suspense fallback = {<div> Loading...</div>}>
             <Routes>
@@ -60,8 +40,6 @@ const RootRouter = () => {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/research-centre" element={<ResearchCentre />} />
             <Route path="/media" element={<Media />} />
-            {/* <Route path="/antibacterial-products" element={<AntibacterialProducts />} /> */}
-            {/* <Route path="/cetylpyridinium-chloride-monohydrate" element={<CetylpyridiniumChloridMonohydrate />} /> */}
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/manufacturing-units" element={<ManufacturingUnits />} />
             <Route path="/blog" element={<Blog />} />
