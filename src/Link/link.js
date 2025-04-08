@@ -1,9 +1,9 @@
 import AdminCategories from "../Admin/AdminCategories";
-import ProductList from "../Admin/ProductList";
+import CreateProduct from "../Admin/CreateProduct";
 
 
 export {
 
     AdminCategories,
-    ProductList,
+    CreateProduct,
 }

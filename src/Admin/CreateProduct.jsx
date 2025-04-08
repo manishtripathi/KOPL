@@ -6,7 +6,7 @@ import { fetchCategories, setSelectedCategory } from "../redux/slice/categoriesS
 import ProductDetailForm from "../Forms/ProductDetailForm";
 import './createproduct.css'
 
-const ProductList = () => {
+const CreateProduct = () => {
     const dispatch = useDispatch();
     
     const [product, setProduct] = useState({
@@ -167,4 +167,4 @@ const ProductList = () => {
     );
 };
 
-export default ProductList;
+export default CreateProduct;

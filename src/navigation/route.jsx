@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from 'react'
 import { Routes, Route } from "react-router-dom"
-import {AdminCategories, ProductList} from '../Link/link'
+import {AdminCategories, CreateProduct} from '../Link/link'
 import Home from '../pages/home/home'
 import Products from '../pages/products/products'
 import WhoWeAre from '../pages/whoWeAre/whoWeAre'
@@ -23,11 +23,15 @@ import NewsDetail from '../templates/home/NewsDetail';
 import BlogsDetail from '../templates/home/BlogDetail';  
 
 import ProductDetails from '../templates/cetylpyridiniumChloridMonohydrate/ProductDetails'
-import AllNews from '../templates/home/AllNews';  // Adjust the path if needed
-import AllBlogs from '../templates/home/AllBlogs';  // Adjust the path if needed
+import AllNews from '../templates/home/AllNews';  
+import AllBlogs from '../templates/home/AllBlogs';  
 
 import CreateBlog from '../Admin/createBlog'
 import BlogDetail from '../templates/home/BlogDetail'
+import MediaDetails from '../pages/mediaDetails/mediaDetails'
+import BiotechCentre from '../pages/biotechCentre/biotechCentre'
+import AdminDashboard from '../pages/Admin/page'
+import AdminLayout from '../pages/Admin/Layout'
 
 const RootRouter = () => {
     return (
@@ -51,7 +55,7 @@ const RootRouter = () => {
             <Route path="/news-events" element={<NewsEvent />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/admincategories" element={<AdminCategories />} />
-            <Route path='/productlist' element={<ProductList/>} />
+            <Route path='/create-product' element={<CreateProduct/>} />
             <Route path="/createnews" element={<CreateNews/>}/>
             <Route path="/createblogs" element={<CreateBlog/>}/>
 
@@ -63,6 +67,16 @@ const RootRouter = () => {
 
             <Route path="/all-news" element={<AllNews />} />
             <Route path="/all-blogs" element={<AllBlogs />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/media-details" element={<MediaDetails />} />
+            <Route path="/biotech-centre" element={<BiotechCentre />} />
+            <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='' element={<AdminDashboard/>}/>
+            <Route path='create-product' element={<CreateProduct/>} />
+            <Route path="createnews" element={<CreateNews/>}/>
+            <Route path="createblogs" element={<CreateBlog/>}/>
+            <Route path="create-category" element={<AdminCategories />} />
+            </Route>
 
 
 
