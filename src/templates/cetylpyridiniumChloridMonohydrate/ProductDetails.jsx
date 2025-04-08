@@ -64,6 +64,7 @@ const ProductDetails = () => {
                             <div className="info">
                                 <h1>{selectedProduct.name}</h1>
                                 <h2>{selectedProduct.subtitle}</h2>
+                                <p>{selectedProduct.productDescription}</p>
                                 <AtomButton
                                     variant="contained"
                                     color="primary"

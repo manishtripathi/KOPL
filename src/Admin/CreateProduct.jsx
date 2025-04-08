@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../redux/slice/productlistSlice";
-import { input, Button, MenuItem } from "@mui/material";
+import { input, Button, MenuItem, TextField } from "@mui/material";
 import { fetchCategories, setSelectedCategory } from "../redux/slice/categoriesSlice";
 import ProductDetailForm from "../Forms/ProductDetailForm";
 import './createproduct.css'
@@ -15,6 +15,7 @@ const CreateProduct = () => {
         category: "",
         casNumber: "",
         base64Image: "",
+        productDescription: "",
         productDetails : [],
     });
     const { items: categories = [], loading: categoriesLoading, error } = useSelector((state) => state.categories)
@@ -85,7 +86,7 @@ const CreateProduct = () => {
         }
         console.log(product);
         dispatch(addProduct(product));
-        setProduct({ name: "", subtitle: "", category: "", casNumber: "", base64Image: "", productDetails: [] });
+        setProduct({ name: "", subtitle: "", category: "", casNumber: "", base64Image: "", productDetails: [], productDescription: "" });
     };
 
     return (
@@ -147,6 +148,14 @@ const CreateProduct = () => {
                         placeholder="CAS Number"
                         fullWidth
                     />
+                    <TextField
+                        name="productDescription"                       
+                        placeholder="e.g., Full-time, Part-time"
+                        value={product.productDescription}
+                        onChange={handleChange}
+                        variant="outlined"
+                        fullWidth
+                      />
                     </div>
                     </div>
                     <div className="formrow">

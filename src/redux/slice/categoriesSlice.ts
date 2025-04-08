@@ -12,30 +12,30 @@ export const fetchCategories = createAsyncThunk<any, void>("categories/fetchcate
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data()}))
 }) 
 
-    export const addCategory = createAsyncThunk<any,any>(
-        "categories/addCategories",
-        async ({ name, imageFile, base64Image }) => {
-          try {
-            let imageUrl = "";
-            if (imageFile) {
-            //   console.log("Uploading image 1:", imageFile);
-            const imageRef = ref(storage, `categories/${uuidv4()}`);
-            // const res=  await uploadBytes(imageRef, imageFile);
-            // console.log("response from upload", res)
-            //   imageUrl = await getDownloadURL(imageRef);
-            //   console.log("Image uploaded successfully. URL:", imageUrl);
-            }
-      
-            const categoryData = { name, image: base64Image };
-            const docRef = await addDoc(collection(db, "categories"), categoryData);
-      
-            return { id: docRef.id, ...categoryData };
-          } catch (error:any) {
-            console.error("Error uploading image:", error);
-            throw new Error(error.message);
-          }
+export const addCategory = createAsyncThunk<any,any>(
+    "categories/addCategories",
+    async ({ name, imageFile, base64Image,  }) => {
+        try {
+        let imageUrl = "";
+        if (imageFile) {
+        //   console.log("Uploading image 1:", imageFile);
+        const imageRef = ref(storage, `categories/${uuidv4()}`);
+        // const res=  await uploadBytes(imageRef, imageFile);
+        // console.log("response from upload", res)
+        //   imageUrl = await getDownloadURL(imageRef);
+        //   console.log("Image uploaded successfully. URL:", imageUrl);
         }
-      );
+    
+        const categoryData = { name, image: base64Image };
+        const docRef = await addDoc(collection(db, "categories"), categoryData);
+    
+        return { id: docRef.id, ...categoryData };
+        } catch (error:any) {
+        console.error("Error uploading image:", error);
+        throw new Error(error.message);
+        }
+    }
+    );
       
     
 

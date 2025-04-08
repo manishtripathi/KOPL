@@ -32,6 +32,7 @@ import MediaDetails from '../pages/mediaDetails/mediaDetails'
 import BiotechCentre from '../pages/biotechCentre/biotechCentre'
 import AdminDashboard from '../pages/Admin/page'
 import AdminLayout from '../pages/Admin/Layout'
+import CreateCareer from '../pages/careers/CreateCareer'
 
 const RootRouter = () => {
     return (
@@ -76,6 +77,7 @@ const RootRouter = () => {
             <Route path="createnews" element={<CreateNews/>}/>
             <Route path="createblogs" element={<CreateBlog/>}/>
             <Route path="create-category" element={<AdminCategories />} />
+            <Route path="create-career" element={<CreateCareer />} />
             </Route>
 
 

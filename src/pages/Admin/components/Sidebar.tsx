@@ -11,6 +11,7 @@ export default function Sidebar() {
                     <li><NavLink to={"createblogs"}>Create Blog</NavLink></li>
                     <li><NavLink to={"createnews"}>Create News</NavLink></li>
                     <li><NavLink to={"create-product"}>Create Products</NavLink></li>
+                    <li><NavLink to={"create-career"}>Create Career</NavLink></li>
                     <li><NavLink to={""}>View Pages</NavLink></li>
                 </ul>
             </nav>

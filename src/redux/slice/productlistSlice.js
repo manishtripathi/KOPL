@@ -7,7 +7,7 @@
         const querySnapshot = await getDocs(collection(db, "products"));
         const products = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         
-        console.log("Fetched Products from Firebase:", products); // ✅ Correct placement
+        console.log("Fetched Products from Firebase:", products); 
     
         return products;
     });
@@ -15,9 +15,9 @@
 
     export const addProduct = createAsyncThunk(
         "products/addProduct",
-        async ({ name, category, subtitle, casNumber, productDetails, base64Image }) => {
+        async ({ name, category, subtitle, casNumber, productDetails, base64Image, productDescription }) => {
             try {
-                const newProduct = { name, category, subtitle, productDetails, casNumber, image: base64Image  };
+                const newProduct = { name, category, subtitle, productDetails, casNumber, image: base64Image, productDescription  };
                 const docRef = await addDoc(collection(db, "products"), newProduct);
                 return { id: docRef.id, ...newProduct };
             } catch (error) {

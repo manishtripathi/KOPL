@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid2'
 import { Container, useMediaQuery } from '@mui/material'
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,23 @@ import AtomTextField from '../../atoms/textField'
 import AtomLink from '../../atoms/link/link'
 import { CirclePatternTop, ChevronRight, Facebook, Twitter, Linkedin } from '../../helpers/constant/imageUrl'
 import './careers.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/storage/store';
+import { displayPartsToString } from 'typescript';
+import { fetchCareer } from '../../redux/slice/configSlice';
 
 const CareerTemplate = () => { 
     const navigate = useNavigate();
     const breakPointIpad = useMediaQuery(`(${BREAK_POINT_CONSTANTS.IPAD})`)
+    const {careers} = useSelector((state:RootState)=>state.config);
+    const dispatch = useDispatch<AppDispatch>();
     const [currentTab, setCurrentTab] = useState(0)
     const handleChange = (event: React.SyntheticEvent<Element, Event>, newValue: number) => {
         setCurrentTab(newValue)
     }
+    useEffect(()=>{
+        dispatch(fetchCareer());
+    },[dispatch])
     return (
         <div className="careers">
             <div className='gradient-section'>
@@ -107,22 +116,28 @@ const CareerTemplate = () => {
                     </div>
                     <Grid container spacing={{ xs: 1.26, md: 3 }}>
                         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                            <div className='blue-card'>
-                                <div className='experience'>Entry Level</div>
-                                <h4>Sales Executive</h4>
-                                <p>Developing and driving sales of the specialty ingredients / Pharma Actives / Food Additives used in cosmeceutical, personal care, Health & Nutraceuticals industries for the products manufactured by KOPL India and outsourced by KOPL.</p>
-                                <h5>Job Type</h5>
-                                <p>Full Time</p>
-                                <AtomButton 
-                                    variant = {'outlined'}
-                                    size = {'small'}
-                                    endIcon={
-                                        <img src={ChevronRight} alt='' />
-                                    }
-                                >
-                                    LEARN MORE
-                                </AtomButton>
-                            </div>
+                            {(Array.isArray(careers) && careers?.length>0) ?  (careers)?.map((career:any)=>{
+                                return(
+                                    <div className='blue-card'>
+                                    <div className='experience'>{career.experienceLevel}</div>
+                                    <h4>{career.jobTitle}</h4>
+                                    <p>{career.jobDescription}</p>
+                                    <h5>Job Type</h5>
+                                    <p>{career.jobType}</p>
+                                    <AtomButton 
+                                        variant = {'outlined'}
+                                        size = {'small'}
+                                        endIcon={
+                                            <img src={ChevronRight} alt='' />
+                                        }
+                                    >
+                                        LEARN MORE
+                                    </AtomButton>
+                                </div> 
+                                )
+                            }) :
+                            <div>No Current careers opening</div>}
+                            
                         </Grid>
                         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <div className='blue-card'>
