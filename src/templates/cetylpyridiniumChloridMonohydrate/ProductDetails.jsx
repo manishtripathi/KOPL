@@ -122,12 +122,10 @@ const ProductDetails = () => {
                                 ))}
                             </Grid>
                         ) : (
-                            <p className="description">{section.fields[0]?.value}</p>
+                            <p className="description" dangerouslySetInnerHTML={{__html:section?.description}}/>
                         )}
                     </AtomTabPanel>
                 ))}
-
-
             </Container>
             <div className='discover-offices'>
                 <Container className='container'>

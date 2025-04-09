@@ -70,7 +70,7 @@ const CreateProduct = () => {
 
    
     const handleSubmit = (e) => {
-        debugger;
+        
         e.preventDefault();
         if (!product.base64Image) {
             alert("Please select an image.");
