@@ -115,6 +115,9 @@ const HeaderTemplate = ({}) => {
                             <AccordionDetails>
                                 <ul>
                                     <li>
+                                        <AtomButton> All Products </AtomButton>
+                                    </li>
+                                    <li>
                                         <AtomButton>Antibacterial Products</AtomButton>
                                     </li>
                                     <li>
@@ -310,6 +313,11 @@ const HeaderTemplate = ({}) => {
                                             ></AtomLink>
                                             <ul>
                                                 <li>
+                                                <AtomButton onClick={() => navigate('/products')}>
+                                                    All Products
+                                                </AtomButton>
+                                                </li>
+                                                <li>
                                                     <AtomButton>Antibacterial Products</AtomButton>
                                                 </li>
                                                 <li>
@@ -386,6 +394,11 @@ const HeaderTemplate = ({}) => {
                                                 endIcon={<img src={Dismiss} alt='' />}
                                             ></AtomLink>
                                             <ul>
+                                                <li>
+                                                    <AtomButton onClick={() => navigate('/careers')}>
+                                                        Careers
+                                                    </AtomButton>
+                                                </li>
                                                 <li>
                                                     <AtomButton>Sales Manager - MEA Region</AtomButton>
                                                 </li>
