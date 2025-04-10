@@ -178,6 +178,7 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
                         onChange={handleImagesChange}
                         aria-describedby="imagesError"
                         aria-invalid={!!errors.images}
+                        placeholder='detailsimage'
                     />
                     {imagePreviews.length > 0 && (
                         <div className={styles.imagePreviewContainer}>

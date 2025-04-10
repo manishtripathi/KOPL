@@ -47,13 +47,13 @@ const validateBase64Image = (base64String: string | undefined | null): string =>
                 return `data:${mimeType};base64,${parts[1]}`;
             }
             
-            console.warn('Invalid base64 image format, using default image');
+            // console.warn('Invalid base64 image format, using default image');
             return defaultBase64;
         }
         
         return base64String;
     } catch (error) {
-        console.error('Error processing base64 image:', error);
+        // console.error('Error processing base64 image:', error);
         return defaultBase64;
     }
 };
@@ -71,7 +71,7 @@ const getNewsFromFirebase = async (itemLimit: number): Promise<NewsItem[]> => {
 
             // ***Use the CORRECT field name from Firebase!***
             const rawThumbBase64 = data.thumbnailBase64; // Corrected field name
-            console.log("Raw thumbBase64 from Firebase:", rawThumbBase64);
+            // console.log("Raw thumbBase64 from Firebase:", rawThumbBase64);
 
             // Handle thumbnail Base64 data with validation
             const thumbnailImage = validateBase64Image(rawThumbBase64);
@@ -98,7 +98,7 @@ const getNewsFromFirebase = async (itemLimit: number): Promise<NewsItem[]> => {
 
         return news;
     } catch (error) {
-        console.error("Error fetching news from Firebase:", error);
+        // console.error("Error fetching news from Firebase:", error);
         return []; // Return empty array instead of throwing to avoid crashes
     }
 };

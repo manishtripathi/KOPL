@@ -60,16 +60,17 @@ const RootRouter = () => {
             <Route path="/createnews" element={<CreateNews/>}/>
             <Route path="/createblogs" element={<CreateBlog/>}/>
 
-            <Route path="/news/:id" element={<NewsDetail />} />
+            {/* <Route path="/news/:id" element={<NewsDetail />} /> */}
+            <Route path="/news/:id" element={<MediaDetails />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
 
             <Route path="/category/:categoryName" element={<AntibacterialProducts />} />
             <Route path="/product-detail/" element={<ProductDetails />} />
 
-            <Route path="/all-news" element={<AllNews />} />
+            <Route path="/all-news" element={<NewsEvent />} />
             <Route path="/all-blogs" element={<AllBlogs />} />
             <Route path="/careers" element={<Careers />} />
-            <Route path="/media-details" element={<MediaDetails />} />
+            {/* <Route path="/media-details/:heading" element={<MediaDetails />} /> */}
             <Route path="/biotech-centre" element={<BiotechCentre />} />
             <Route path='/admin' element={<AdminLayout/>}>
             <Route path='' element={<AdminDashboard/>}/>
@@ -79,10 +80,6 @@ const RootRouter = () => {
             <Route path="create-category" element={<AdminCategories />} />
             <Route path="create-career" element={<CreateCareer />} />
             </Route>
-
-
-
-
             </Routes>
 
         </Suspense>

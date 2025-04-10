@@ -61,7 +61,7 @@ const LatestNews: React.FC<LatestNewsProps> = ({ limit = 6 }) => {
                 )}
                 <div className='pl-4 pr-4'>
                     <div className='title'>
-                        NEWS & EVENTS
+                        {item.title}
                     </div>
                     <div className='white-section'>
                         <h5>{item.heading}</h5>

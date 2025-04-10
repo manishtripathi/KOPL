@@ -71,7 +71,7 @@ const NewsDetail: React.FC = () => {
                 </div>
                 {newsItem.thumbnailImage && (
                     <div className="news-detail-image">
-                        <Base64Image src={newsItem.thumbnailImage} alt={newsItem.title} />
+                        <Base64Image src={newsItem.thumbnailImage} alt={newsItem.title} className='banner' />
                     </div>
                     
                 )}
