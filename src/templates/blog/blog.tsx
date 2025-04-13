@@ -1,18 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid2'
 import { Container } from '@mui/material'
 import { useNavigate } from "react-router-dom";
 import AtomLink from '../../atoms/link/link'
 import AtomButton from '../../atoms/button'
 import { CirclePatternTop, Event6, Event7, Event8, Event9, Event10, Event11, DialogArrow, ChevronRight } from '../../helpers/constant/imageUrl'
+import { Link } from "react-router-dom";
+import getBlogFromFirebase, { BlogItem } from '../../services/BlogService';
+import DOMPurify from "dompurify";
+
 import './blog.scss'
 
-const BlogTemplate = () => { 
+
+
+const BlogTemplate: React.FC = () => { 
+    const [blogsItems, setBlogsItems] = useState<BlogItem []>([]);
+    const [loading, setLoading] = useState<Boolean>(true);
+    const [error, setError] = useState<string | null>(null)
     const navigate = useNavigate();
     const [currentTab, setCurrentTab] = useState(0)
     const handleChange = (event: React.SyntheticEvent<Element, Event>, newValue: number) => {
         setCurrentTab(newValue)
     }
+    useEffect(() => {
+        const fetchAllBlog = async () => {
+            try {
+                setLoading(true);
+                const allBlogData = await getBlogFromFirebase(100);
+                setBlogsItems(allBlogData)
+                setError(null);
+                
+            } catch (error) {
+                console.error("Error fetching all Blog:", error);
+                setError("Failed to load Blog. Please try again.");
+            }finally{
+                setLoading(false);
+            }
+        };
+        fetchAllBlog();
+    }, []);
     return (
         <div className="media">
             <div className='gradient-section'>
@@ -30,28 +56,40 @@ const BlogTemplate = () => {
             <div className='all-updates'>
                 <Container className='container'>
                     <Grid container rowSpacing={{ xs: 1, sm: 2, md: 6 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-                            <div className='card'>
-                                <img src={Event6} alt='' className='thumb' />
-                                <div className='pl-4 pr-4'>
-                                    <div className='title'>
-                                        BLOGS
-                                    </div>
-                                    <div className='white-section'>
-                                        <h5>Carrot Dew Face Mist: The New Standard for Skin Hydration and Care</h5>
-                                        <p>Carrot dew is a Face Mist. This formulation is developed with Bacillus ginsengisoli/Carrot root ferment filtrate, also called as Kopcarotol, having following attributes,</p>
-                                        <AtomLink 
-                                            href=""
-                                            className='read-article'
-                                            startIcon={<img src={DialogArrow} alt='' />}
-                                        >
-                                            Read Article
-                                        </AtomLink>
+                        {blogsItems.map((item) => {
+                            const sanitizedDescription = DOMPurify.sanitize(item.description || "");
+                            const shortDescription = sanitizedDescription.length > 120
+                                ? `${sanitizedDescription.substring(0, 120)}...`
+                                : sanitizedDescription;
+                            return(
+                                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                                <div className='card'>
+                                    <img src={item.thumbnailImage} alt={item.heading} className='thumb' />
+                                    <div className='pl-4 pr-4'>
+                                        <div className='title'>
+                                            {item.title}
+                                        </div>
+                                        <div className='white-section'>
+                                            <h5>{item.heading}</h5>
+                                            <p dangerouslySetInnerHTML={{__html:shortDescription}}/>
+                                            <AtomLink 
+                                                href=""
+                                                className='read-article'
+                                                startIcon={<img src={DialogArrow} alt='' />}
+                                            >
+                                                Read Article
+                                            </AtomLink>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Grid>
-                        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                            </Grid>
+                            )
+                        })  
+                        
+                        
+                        }
+                       
+                        {/* <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <div className='card'>
                                 <img src={Event7} alt='' className='thumb' />
                                 <div className='pl-4 pr-4'>
@@ -155,7 +193,7 @@ const BlogTemplate = () => {
                                     </div>
                                 </div>
                             </div>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                     <div className='text-center mt-16'>
                         <AtomButton 

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, useMediaQuery } from '@mui/material'
 import AtomLink from '../../atoms/link/link'
 import Accordion from '@mui/material/Accordion';
 import { useNavigate } from "react-router-dom";
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { fetchCategories } from "../../redux/slice/categoriesSlice";
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { Logo, LogoBlack, CaretDown, Dismiss, Search, Humburger } from '../../helpers/constant/imageUrl'
 import { BREAK_POINT_CONSTANTS } from '../../helpers/constant/constant'
@@ -11,9 +12,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TextField from '@mui/material/TextField';
 import './header.scss'
 import AtomButton from "../../atoms/button";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../redux/storage/store";
+
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 const HeaderTemplate = ({}) => {
+    const dispatch = useAppDispatch()
     const navigate = useNavigate();
+    const { items: categories = [], loading = false } = useSelector(
+        (state: RootState) => state.categories || {}
+      )
+      
+    useEffect(()=>{
+        dispatch(fetchCategories())
+    },[dispatch])
     const breakPointIpad = useMediaQuery(`(${BREAK_POINT_CONSTANTS.IPAD})`)
     const [openDropdown, setOpenDropdown] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
@@ -27,6 +40,12 @@ const HeaderTemplate = ({}) => {
     const handleSearchClosed = () => {
         setIsSearchOpen(false)
     } 
+
+    interface Category {
+        id: number
+        name: string
+      }
+      
     return (
         <>
             {
@@ -112,12 +131,20 @@ const HeaderTemplate = ({}) => {
                             >
                                 PRODUCTS
                             </AccordionSummary>
+                            {loading ?(
+                                <p> Loading Menu ...</p>
+                            ): (
                             <AccordionDetails>
                                 <ul>
                                     <li>
                                         <AtomButton> All Products </AtomButton>
                                     </li>
-                                    <li>
+                                    {categories.map((menu: Category) => 
+                                          <li>
+                                          <AtomButton>${menu.name}</AtomButton>
+                                      </li>
+                                    )}
+                                    {/* <li>
                                         <AtomButton>Antibacterial Products</AtomButton>
                                     </li>
                                     <li>
@@ -149,9 +176,10 @@ const HeaderTemplate = ({}) => {
                                     </li>
                                     <li>
                                         <AtomButton>Paints & Coating Products</AtomButton>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </AccordionDetails>
+                            )}
                         </Accordion>
                         <Accordion>
                             <AccordionSummary
@@ -311,7 +339,57 @@ const HeaderTemplate = ({}) => {
                                                 onClick={() => toggleDropdown("Products")} 
                                                 endIcon={<img src={Dismiss} alt='' />}
                                             ></AtomLink>
-                                            <ul>
+
+{loading ?(
+                                <p> Loading Menu ...</p>
+                            ): (
+                            <AccordionDetails>
+                                <ul>
+                                    <li>
+                                        <AtomButton> All Products </AtomButton>
+                                    </li>
+                                    {categories.map((menu: Category) => 
+                                          <li>
+                                          <AtomButton>{menu.name}</AtomButton>
+                                      </li>
+                                    )}
+                                    {/* <li>
+                                        <AtomButton>Antibacterial Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Preservatives Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Hair Care Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Hair Growth Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Skin Care Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Bio Ferments</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Sun Care</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Oral Care</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Emollients</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Food & Health Products</AtomButton>
+                                    </li>
+                                    <li>
+                                        <AtomButton>Paints & Coating Products</AtomButton>
+                                    </li> */}
+                                </ul>
+                            </AccordionDetails>
+                            )}
+                                            {/* <ul>
                                                 <li>
                                                 <AtomButton onClick={() => navigate('/products')}>
                                                     All Products
@@ -350,7 +428,7 @@ const HeaderTemplate = ({}) => {
                                                 <li>
                                                     <AtomButton>Paints & Coating Products</AtomButton>
                                                 </li>
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                     )}
                                 </li>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { UseSelector, useDispatch, useSelector } from 'react-redux'
-import Grid from '@mui/material/Grid2'
+// import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid';
+
 import { Container, useMediaQuery } from '@mui/material'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import AtomLink from '../../atoms/link/link'
@@ -64,7 +66,7 @@ const ProductDetails = () => {
                             <div className="info">
                                 <h1>{selectedProduct.name}</h1>
                                 <h2>{selectedProduct.subtitle}</h2>
-                                <p>{selectedProduct.productDescription}</p>
+                                
                                 <AtomButton
                                     variant="contained"
                                     color="primary"
@@ -73,7 +75,7 @@ const ProductDetails = () => {
                                 >
                                     GET A QUOTE
                                 </AtomButton>
-                                <p>{selectedProduct.description}</p>
+                                <p>{selectedProduct.productDescription}</p>
                             </div>
                         </Grid>
                     </Grid>
@@ -107,7 +109,7 @@ const ProductDetails = () => {
                                     acc[colIndex].push(field);
                                     return acc;
                                 }, []).map((group, colIdx) => (
-                                    <Grid key={colIdx} item xs={12} sm={6}>
+                                    <Grid key={colIdx} item xs={12} sm={6} >
                                         <Table>
                                             <TableBody>
                                                 {group.map((field, idx) => (

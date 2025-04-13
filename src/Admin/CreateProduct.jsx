@@ -8,7 +8,7 @@ import './createproduct.css'
 
 const CreateProduct = () => {
     const dispatch = useDispatch();
-    
+    debugger
     const [product, setProduct] = useState({
         name: "",
         subtitle: "",
@@ -61,15 +61,23 @@ const CreateProduct = () => {
     };
 
     const handleCategoryChange = (e) => {
+        debugger
         const selectedCategory = e.target.value;
        
 
         setSelectedCategory(selectedCategory);
-        setProduct({ ...product, category: selectedCategory });
+        // setProduct({ ...product, category: selectedCategory });
+
+        const selected = categories.find((cat) => cat.name === selectedCategory);
+        setProduct({ ...product, category: selected?.name || "" });
+
+
+
     };
 
    
     const handleSubmit = (e) => {
+        debugger;
         
         e.preventDefault();
         if (!product.base64Image) {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { fetchProducts } from "../../redux/slice/productlistSlice";
+import { fetchProducts, fetchProductsByCategory } from "../../redux/slice/productlistSlice";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
 import AtomButton from "../../atoms/button/button";
@@ -15,18 +15,32 @@ const AntibacterialProductsTemplate = () => {
     
     debugger
     const categoryName = useLocation()?.state?.categoryName || "";
-    const { items = [], loading, error } = useSelector((state) => state.productlist || {});
+    const { categoryProducts, loading, error } = useSelector((state) => state.productlist || {});
     const categories = useSelector((state) => state.categories.items);
-    const products = Array.isArray(items) ? items : [];
+    const products = Array.isArray(categoryProducts) ? categoryProducts : [];
+
+
+//     const products = useMemo(() => {
+//     const allProducts = Array.isArray(items) ? items : [];
+//     return categoryName
+//         ? allProducts.filter((product) => product.category === categoryName)
+//         : allProducts;
+// }, [items, categoryName]);
+
 
 
     useEffect(() => {
-        dispatch(fetchProducts());
         if (categories?.length === 0)
             dispatch(fetchCategories())
     }, [dispatch]);
 
     const categoryDetail = useMemo(() => categories.find((categ) => categ.name === categoryName), [categoryName])
+
+    useEffect(()=>{
+        if(categoryDetail){
+            dispatch(fetchProductsByCategory(categoryDetail?.name))
+        }
+    },[categoryDetail])
     console.log("Fetched Products:", products);
 
     return (

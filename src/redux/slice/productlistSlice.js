@@ -1,6 +1,6 @@
     import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
     import { db, storage } from "../../Firebase/firebaseConfig";
-    import { collection, addDoc, getDocs } from "firebase/firestore";
+    import { collection, addDoc, getDocs, where, query } from "firebase/firestore";
     import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
     import { v4 as uuidv4 } from 'uuid';
     export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
@@ -10,6 +10,17 @@
         console.log("Fetched Products from Firebase:", products); 
     
         return products;
+    });
+
+
+    export const fetchProductsByCategory = createAsyncThunk("products/fetchProductsbycategory", async (categoryName) => {
+        const q = query(
+            collection(db, "products"),
+            where("category", "==", categoryName)
+          );
+          const querySnapshot = await getDocs(q);
+          const products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          return products;
     });
     
 
@@ -34,6 +45,7 @@
         initialState: {
             categoryId: null,
             items: [],
+            categoryProducts:[],
             loading: false,
             error: null,
         },
@@ -49,6 +61,18 @@
                     state.items = action.payload;
                 })
                 .addCase(fetchProducts.rejected, (state, action) => {
+                    state.loading = false;
+                    state.error = action.error.message;
+                })
+                .addCase(fetchProductsByCategory.pending, (state) => {
+                    state.loading = true;
+                    state.error = null;
+                })
+                .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+                    state.loading = false;
+                    state.categoryProducts = action.payload;
+                })
+                .addCase(fetchProductsByCategory.rejected, (state, action) => {
                     state.loading = false;
                     state.error = action.error.message;
                 })
