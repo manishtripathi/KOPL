@@ -20,7 +20,7 @@ export default function CreateCareer(){
       };
     
       const handleSubmit = (e: any) => {
-        debugger
+         
         e.preventDefault();
         console.log("Submitted payload:", payload);
         dispatch(addCareer(payload)).then((item:any)=>{

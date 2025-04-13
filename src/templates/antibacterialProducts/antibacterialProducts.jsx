@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchProducts, fetchProductsByCategory } from "../../redux/slice/productlistSlice";
@@ -13,11 +13,13 @@ const AntibacterialProductsTemplate = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    debugger
+     debugger
     const categoryName = useLocation()?.state?.categoryName || "";
-    const { categoryProducts, loading, error } = useSelector((state) => state.productlist || {});
+    const { categoryProducts,loading, error } = useSelector((state) => state.productlist || {});
     const categories = useSelector((state) => state.categories.items);
-    const products = Array.isArray(categoryProducts) ? categoryProducts : [];
+    const [loader, setLoader] = useState(true);
+     
+    const products = (Array.isArray(categoryProducts) && !loader) ? categoryProducts : [];
 
 
 //     const products = useMemo(() => {
@@ -34,11 +36,12 @@ const AntibacterialProductsTemplate = () => {
             dispatch(fetchCategories())
     }, [dispatch]);
 
-    const categoryDetail = useMemo(() => categories.find((categ) => categ.name === categoryName), [categoryName])
+    const categoryDetail = useMemo(() => categories.find((categ) => categ.name === categoryName), [categoryName,categories])
 
     useEffect(()=>{
         if(categoryDetail){
-            dispatch(fetchProductsByCategory(categoryDetail?.name))
+            dispatch(fetchProductsByCategory(categoryDetail?.name)).then(()=>setLoader(false))
+            
         }
     },[categoryDetail])
     console.log("Fetched Products:", products);
@@ -59,7 +62,7 @@ const AntibacterialProductsTemplate = () => {
 
             <div className="products">
                 <Container className="container">
-                    {loading && <p>Loading products...</p>}
+                    {loader && <p>Loading products...</p>}
                     {error && <p>Error loading products: {error}</p>}
                     <Grid container spacing={3}>
                         {products.length === 0 ? (

@@ -8,17 +8,17 @@ import './createproduct.css'
 
 const CreateProduct = () => {
     const dispatch = useDispatch();
-    debugger
+    const { items: categories = [], loading: categoriesLoading, error } = useSelector((state) => state.categories)
+     
     const [product, setProduct] = useState({
         name: "",
         subtitle: "",
-        category: "",
+        category: categories[0],
         casNumber: "",
         base64Image: "",
         productDescription: "",
         productDetails : [],
     });
-    const { items: categories = [], loading: categoriesLoading, error } = useSelector((state) => state.categories)
     const { categoryId } = useSelector((state) => state.productlist)
 
    
@@ -61,7 +61,7 @@ const CreateProduct = () => {
     };
 
     const handleCategoryChange = (e) => {
-        debugger
+         
         const selectedCategory = e.target.value;
        
 
@@ -77,7 +77,7 @@ const CreateProduct = () => {
 
    
     const handleSubmit = (e) => {
-        debugger;
+         
         
         e.preventDefault();
         if (!product.base64Image) {
@@ -139,11 +139,14 @@ const CreateProduct = () => {
                         {categoriesLoading ? (
                             <option disabled>Loading...</option>
                         ) : (
-                            categories.map((category) => (
+                            <>
+                            <option key={0} value={""}>Select Category</option>
+                            {categories.map((category) => (
                                 <option key={category.id} value={category.name}>
                                     {category.name}
                                 </option>
-                            ))
+                            ))}
+                            </>
                         )}
                     </select>
                         </div>

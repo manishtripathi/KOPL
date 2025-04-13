@@ -27,7 +27,7 @@
     export const addProduct = createAsyncThunk(
         "products/addProduct",
         async ({ name, category, subtitle, casNumber, productDetails, base64Image, productDescription }) => {
-            debugger
+             
             try {
                 const newProduct = { name, category, subtitle, productDetails, casNumber, image: base64Image, productDescription  };
                 const docRef = await addDoc(collection(db, "products"), newProduct);
