@@ -302,3 +302,43 @@
         display: block;
     }
 }
+
+
+.product-submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    position: absolute;
+    left: 100%; 
+    top: 0; 
+}
+
+
+.category-item {
+    position: relative;
+
+    &:hover {
+        .product-submenu {
+            display: block;
+        }
+
+        .arrow-icon {
+            transform: rotate(90deg); // Rotate the arrow when hovered
+        }
+    }
+}
+
+
+.arrow-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.product-submenu {
+    li {
+        margin-bottom: 5px;
+    }
+}
+
