@@ -64,8 +64,12 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Half-visible Wheel Slider */}
-      <div className={styles.wheelWrapper}>
+      {/* Text slider ends here */}
+
+
+          {/* Wheel Starts here */}
+
+      {/* <div className={styles.wheelWrapper}>
   <div className={styles.wheelMask}>
     <div
       className={styles.wheel}
@@ -88,8 +92,9 @@ const Hero: React.FC = () => {
       })}
     </div>
   </div>
-</div>
+</div> */}
 
+{/* Wheel ends here */}
     </div>
   );
 };
