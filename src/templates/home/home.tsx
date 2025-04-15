@@ -11,6 +11,7 @@ import AtomCarousel from '../../atoms/carousel/carousel'
 import { BREAK_POINT_CONSTANTS } from '../../helpers/constant/constant'
 import './home.scss'
 import LatestNews from './LatestNews'; // Import the LatestNews component
+import HeroSection from '../../Component/HeroSection';
 
 
 const HomeTemplate = () => {
@@ -21,8 +22,11 @@ const HomeTemplate = () => {
     }
     return (
         <>
+        <HeroSection/>
             <div className="what-we-do">
+            
                 <Container className='container'>
+                   
                     <h3>What we do at KOPL?</h3>
                     <p>At KOPL, we're forging a path towards a sustainable future through innovative solutions With over three decades of experience, we've continually adapted to global demands in active ingredient manufacturing.Our commitment to innovation is evident in our embrace of biotechnology, resulting in a diverse product lineup derived from advanced bio-transformation and bio-fermentation processes.</p>
                     <div className='blue-section'>
