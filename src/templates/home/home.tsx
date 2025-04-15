@@ -12,6 +12,7 @@ import { BREAK_POINT_CONSTANTS } from '../../helpers/constant/constant'
 import './home.scss'
 import LatestNews from './LatestNews'; // Import the LatestNews component
 import HeroSection from '../../Component/HeroSection';
+import Hero from '../../Component/hero/Hero';
 
 
 const HomeTemplate = () => {
@@ -22,6 +23,7 @@ const HomeTemplate = () => {
     }
     return (
         <>
+        {/* <Hero/> */}
         <HeroSection/>
             <div className="what-we-do">
             
