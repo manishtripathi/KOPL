@@ -1,0 +1,122 @@
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0d0f1b, #1c1e2c);
+  height: 100vh;
+  padding: 0 5%;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+/* --- Text Slider --- */
+.textSliderWrapper {
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.textSlider {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+
+.slide h1 {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.slide p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.slide button {
+  background-color: #d61f1f;
+  border: none;
+  padding: 12px 24px;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #777;
+  border-radius: 50%;
+}
+
+.activeDot {
+  background: white;
+}
+
+/* --- Wheel Slider (Right Section) --- */
+.wheelWrapper {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.wheelMask {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.wheel {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center center;
+  transition: transform 1s ease-in-out;
+  border-radius: 50%;
+}
+
+.wheelImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  transform-origin: center center;
+  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  opacity: 0.5;
+}
+
+.activeImage {
+  opacity: 1 !important;
+}
+
