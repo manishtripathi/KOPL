@@ -64,8 +64,10 @@ const RootRouter = () => {
             <Route path="/news/:id" element={<MediaDetails />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
 
-            <Route path="/category/:categoryName" element={<AntibacterialProducts />} />
+            <Route path="/products/:categoryName" element={<AntibacterialProducts />} />
             <Route path="/product-detail/" element={<ProductDetails />} />
+            
+            <Route path="/products/:categoryName/:productname" element={<ProductDetails />} />
 
             <Route path="/all-news" element={<NewsEvent />} />
             <Route path="/all-blogs" element={<AllBlogs />} />

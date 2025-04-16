@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, useMediaQuery } from '@mui/material'
 import AtomLink from '../../atoms/link/link'
 import Accordion from '@mui/material/Accordion';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { fetchCategories } from "../../redux/slice/categoriesSlice";
 import { fetchProducts } from "../../redux/slice/productlistSlice"; 
@@ -44,7 +44,8 @@ const HeaderTemplate = ({ }) => {
     const breakPointIpad = useMediaQuery(`(${BREAK_POINT_CONSTANTS.IPAD})`)
     const [openDropdown, setOpenDropdown] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
-    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const location = useLocation();
     // const products: Product[] = useSelector((state: RootState) => state.products.items);
 
 
@@ -67,6 +68,11 @@ const HeaderTemplate = ({ }) => {
         id: string;
         name: string;
       }
+
+      useEffect(() => {
+        if(openDropdown)
+        setOpenDropdown(null);
+    }, [location.pathname]);
 
     return (
         <>
@@ -196,11 +202,11 @@ const HeaderTemplate = ({ }) => {
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <ul>
-                                        <li>
-                                            <AtomButton>News & Events</AtomButton>
+                                        <li onClick={()=>navigate("/all-news")}>
+                                            <AtomButton >News & Events</AtomButton>
                                         </li>
-                                        <li>
-                                            <AtomButton>Blogs</AtomButton>
+                                        <li onClick={()=>navigate("/all-blogs")}>
+                                            <AtomButton >Blogs</AtomButton>
                                         </li>
                                     </ul>
                                 </AccordionDetails>
@@ -401,10 +407,10 @@ const HeaderTemplate = ({ }) => {
                                                 ></AtomLink>
                                                 <ul>
                                                     <li>
-                                                        <AtomButton>News & Events</AtomButton>
+                                                        <AtomButton onClick={()=>navigate("/all-news")}>News & Events</AtomButton>
                                                     </li>
                                                     <li>
-                                                        <AtomButton>Blogs</AtomButton>
+                                                        <AtomButton onClick={()=>navigate("/all-blogs")}>Blogs</AtomButton>
                                                     </li>
                                                 </ul>
                                             </div>

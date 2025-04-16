@@ -19,13 +19,57 @@ import TableRow from '@mui/material/TableRow';
 import { useNavigate, useLocation } from "react-router-dom";
 import { fetchProducts } from '../../redux/slice/productlistSlice'
 import './cetylpyridiniumChloridMonohydrate.scss'
+import  useBreadCrumbHistory  from '../../helpers/useBreadCrumbs';
 
 const ProductDetails = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    //const [selectedProduct, setSelectedProduct] = useState(null);
+    const generateBreadcrumbs = () => {
+        const pathnames = location.pathname.split('/').filter(x => x);
+        const breadcrumbs = [];
+    
+        breadcrumbs.push({
+            label: 'Home',
+            path: '/'
+        });
+    
+        pathnames.forEach((value, index) => {
+            const path = `/${pathnames.slice(0, index + 1).join('/')}`;
+    
+            let label = value.replace(/-/g, ' ');
+            if (value === 'antibacterial-products') label = 'Antibacterial Products';
+            if (index === pathnames.length - 1 && selectedProduct?.name) {
+                label = selectedProduct.name;
+            }
+    
+            breadcrumbs.push({
+                label,
+                path,
+                isLast: index === pathnames.length - 1
+            });
+        });
+    
+        return breadcrumbs;
+    };
+    
+
+    // const [selectedProduct, setSelectedProduct] = useState(null);
+    
+    // const breadcrumbHistory = useBreadCrumbHistory();
+
+    // // Exclude current page
+    // const visitedPages = breadcrumbHistory.slice(0, -1);
+    // const breadcrumbs = visitedPages
+    //   .slice(-3) // Only last 3 visited pages
+    //   .map((path, idx, arr) => {
+    //     const label = decodeURIComponent(path.split('/').pop().replace(/-/g, ' '));
+    //     const backStep = -(arr.length - idx); // -3, -2, -1
+  
+    //     return { label, backStep };
+    //   });
+
     const breakPointIpad = useMediaQuery(`(${BREAK_POINT_CONSTANTS.IPAD})`)
     const [currentTab, setCurrentTab] = useState(0)
     const handleChange = (event, newValue) => {
@@ -48,14 +92,16 @@ const ProductDetails = () => {
     return (
         <div className="products-detail">
             <Container className='container'>
-                <Breadcrumbs aria-label="breadcrumb">
-                    <AtomButton
-                        onClick={() => navigate("/antibacterial-products")}
-                    >
-                        Antibacterial Products
-                    </AtomButton>
-                    <span>{selectedProduct?.name || 'Product Details'}</span>
-                </Breadcrumbs>
+            <Breadcrumbs aria-label="breadcrumb">
+  {generateBreadcrumbs()?.map((crumb, index) => (
+    <AtomButton key={index} onClick={() => navigate(crumb.backStep)}>
+      {crumb.label}
+    </AtomButton>
+  ))}
+  <span>{selectedProduct?.name || 'Current Page'}</span>
+</Breadcrumbs>
+
+
 
                 {selectedProduct && (
                     <Grid container spacing={5}>
