@@ -91,7 +91,7 @@ const NewsEventTemplate: React.FC<NewsEventProps> = ({ limit = 6 }) => {
                                         <h5>{item.heading}</h5>
                                         <p dangerouslySetInnerHTML={{__html:item.description}}/> 
                                         <AtomLink
-                                            href=""
+                                            href={`/news/${item.id}`}
                                             className='read-article'
                                             startIcon={<img src={DialogArrow} alt='' />}
                                         >

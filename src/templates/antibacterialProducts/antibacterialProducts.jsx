@@ -83,7 +83,7 @@ const AntibacterialProductsTemplate = () => {
                                                 variant="outlined"
                                                 size="small"
                                                 endIcon={<img src={ChevronRight} alt="" />}
-                                                onClick={() => navigate(`/product-detail`, { state: { selectedProduct: product } })}
+                                                onClick={() => navigate(`${product?.name?.toString().replace(/ /g,"-")}`, { state: { selectedProduct: product } })}
                                             >
                                                 KNOW MORE
                                             </AtomButton>

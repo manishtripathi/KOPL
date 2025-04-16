@@ -39,7 +39,7 @@ const ProductsTemplate = () => {
                                                         <div className="overlay">
                                                             {category.name}
                                                             <AtomButton
-                                                                onClick={() => navigate(`/category/${category.name}`,{state:{categoryName:category.name}})}
+                                                                onClick={() => navigate(`/products/${category?.name?.toString().replace(/ /g,"-")}`,{state:{categoryName:category.name}})}
                                                             >
                                                                 VIEW MORE
                                                                 <img src={ChevronRight} alt='' />
