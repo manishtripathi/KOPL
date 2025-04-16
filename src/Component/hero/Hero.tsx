@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './hero.module.css';
+import Slider1 from '../../icon/SliderImage.png'
+import Slider2 from '../../icon/sliderLargeimage.png'
+import Slider3 from '../../icon/KopresearchImage.png'
 
 const slides = [
   {
@@ -19,11 +22,14 @@ const slides = [
   },
 ];
 
-const images = [
-  'https://placehold.co/120x120?text=Img+1',
-  'https://placehold.co/120x120?text=Img+2',
-  'https://placehold.co/120x120?text=Img+3',
-];
+// const images = [
+//   'https://placehold.co/120x120?text=Img+1',
+//   'https://placehold.co/120x120?text=Img+2',
+//   'https://placehold.co/120x120?text=Img+3',
+// ];
+
+
+const images = [Slider1, Slider2, Slider3];
 
 const Hero: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -69,7 +75,7 @@ const Hero: React.FC = () => {
 
           {/* Wheel Starts here */}
 
-      {/* <div className={styles.wheelWrapper}>
+      <div className={styles.wheelWrapper}>
   <div className={styles.wheelMask}>
     <div
       className={styles.wheel}
@@ -92,7 +98,7 @@ const Hero: React.FC = () => {
       })}
     </div>
   </div>
-</div> */}
+</div>
 
 {/* Wheel ends here */}
     </div>

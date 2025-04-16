@@ -23,8 +23,8 @@ const HomeTemplate = () => {
     }
     return (
         <>
-        {/* <Hero/> */}
-        <HeroSection/>
+        <Hero/>
+        {/* <HeroSection/> */}
             <div className="what-we-do">
             
                 <Container className='container'>

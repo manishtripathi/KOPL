@@ -143,6 +143,9 @@ import thumb2 from '../../icon/thumb2.jpg'
 import manufacturingUnit1 from '../../icon/manufacturingUnit1.jpg'
 import thumb1 from '../../icon/thumb1.jpg'
 import Banner from '../../icon/banner.jpg'
+import Slider1 from '../../icon/SliderImage.png'
+import Slider2 from '../../icon/sliderLargeimage.png'
+import Slider3 from '../../icon/KopresearchImage.png'
 
 export {
     Antibacterial,
@@ -289,5 +292,8 @@ export {
     manufacturingUnit1,
     thumb1,
     Banner,
+    Slider1,
+    Slider2,
+    Slider3,
     
 }
