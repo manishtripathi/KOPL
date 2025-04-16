@@ -36,6 +36,7 @@ const Hero: React.FC = () => {
   const totalSlides = slides.length;
 
   useEffect(() => {
+    debugger;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % totalSlides);
     }, 4000);

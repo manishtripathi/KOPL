@@ -103,14 +103,15 @@
 }
 
 .wheelImage {
-  /* position: absolute; */
+  position: absolute; 
   top: 50%;
   left: 50%;
   width: 400px;
   height: 350px;
   border-radius: 12px;
   object-fit: cover;
-  transform-origin: center center;
+  /* transform-origin: center center; */
+  transform: 396px  204px;
   transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   opacity: 0.5;

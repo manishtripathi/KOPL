@@ -70,19 +70,7 @@ const NewsEventTemplate: React.FC<NewsEventProps> = ({ limit = 6 }) => {
                             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <div className='card'>
                                 <img src={item.thumbnailImage} alt='' className='thumb' />
-                                {/* {item.thumbnailImage && (
-                                        <CardMedia
-                                            component="img"
-                                            image={item.thumbnailImage}
-                                            alt={item.heading}
-                                            sx={{
-                                                height: 180,
-                                                objectFit: "cover",
-                                                borderTopLeftRadius: 8,
-                                                borderTopRightRadius: 8,
-                                            }}
-                                        />
-                                    )} */}
+                                
                                 <div className='pl-4 pr-4'>
                                     <div className='title'>
                                         {item.title}

@@ -20,14 +20,37 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
     const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
+    // const config = useMemo(
+    //     () => ({
+    //         readonly: false,
+    //         placeholder: 'Start typing news description...',
+    //         height: 300,
+    //         uploader: {
+    //             url: '/api/upload-image', // Your custom API endpoint
+    //             insertImageAsBase64URI: false,
+    //             imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
+    //             filesVariableName: 'files[]',
+    //           },
+    //     }),
+    //     []
+    // );
+
     const config = useMemo(
         () => ({
-            readonly: false,
-            placeholder: 'Start typing news description...',
-            height: 300,
+          readonly: false,
+          placeholder: 'Start typing news description...',
+          height: 300,
+          uploader: {
+            insertImageAsBase64URI: true, 
+          }
+        //   filebrowser: {
+        //     ajax: {
+        //       url: '/api/browse-images',
+        //     }
+        //   }
         }),
         []
-    );
+      );
 
     const isValid = () => {
         const newErrors = validateForm(title, heading, description, thumbnailImage, images);
@@ -116,6 +139,9 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
         };
     }, [imagePreviews]);
 
+   
+      
+
 
     return (
         <form onSubmit={handleSubmit} className={styles.formContainer} noValidate>
@@ -195,11 +221,19 @@ const NewsForm: React.FC<NewsFormProps> = ({ onSubmit, isLoading = false }) => {
                 <div className={styles.formGroup}>
                     <label htmlFor="description">Description</label>
                     <div className={styles.editorContainer} aria-describedby="descriptionError">
-                        <JoditEditor
+                        {/* <JoditEditor
                             ref={editor}
                             value={description}
                             config={config}
                             onBlur={handleDescriptionChange}
+                        /> */}
+
+                        <JoditEditor
+                        ref={editor}
+                        value={description}
+                        config={config}
+                        onBlur={handleDescriptionChange} // triggers when focus is lost
+                        onChange={newContent => setDescription(newContent)} // triggers on each change
                         />
                     </div>
 

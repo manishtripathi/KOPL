@@ -25,6 +25,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ onSubmit, isLoading = false }) => {
             readonly: false,
             placeholder: 'Start typing Blog description...',
             height: 300,
+            uploader: {
+                insertImageAsBase64URI: true, 
+              }
         }),
         []
     );
