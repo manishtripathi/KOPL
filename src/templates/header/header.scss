@@ -219,7 +219,10 @@
                         li {
                             margin: 0 0 0.5rem 0;
                             padding: 0.5rem;
-                            display: block;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: max-content;
                             .MuiButton-root {
                                 color: $white;
                                 font-size: 1.125rem;
@@ -323,9 +326,9 @@
             display: block;
         }
 
-        .arrow-icon {
-            transform: rotate(90deg); // Rotate the arrow when hovered
-        }
+        // .arrow-icon {
+        //     transform: rotate(90deg); // Rotate the arrow when hovered
+        // }
     }
 }
 
@@ -333,6 +336,7 @@
 .arrow-icon {
     margin-left: 0.5rem;
     transition: transform 0.3s ease-in-out;
+    color: #fff;
 }
 
 

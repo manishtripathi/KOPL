@@ -165,7 +165,8 @@ const HeaderTemplate = ({ }) => {
                                     <AccordionDetails>
                                         <ul>
                                             <li>
-                                                <AtomButton> All Products </AtomButton>
+                                                <AtomButton onClick={()=>navigate("/products")}
+                                                > All Products </AtomButton>
                                             </li>
                                             {categories.map((category: Category) => {
                                                 const categoryProducts = products.filter(
@@ -173,18 +174,21 @@ const HeaderTemplate = ({ }) => {
                                                 );
                     
                                                 return (
-                                                    <li key={category.id} className="category-item">
-            <AtomButton>{category.name}</AtomButton>
-            {categoryProducts.length > 0 && (
-                <ul className="product-submenu" style={{ paddingLeft: '1rem', marginTop: '0.5rem' }}>
-                    {categoryProducts.map((product: Product) => (
-                        <li key={product.id}>
-                            <AtomButton>{product.name}</AtomButton>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </li>
+                                                    <li onClick={() => {navigate(`/products/${category?.name?.toString().replace(/ /g,"-")}`,{state:{categoryName:category.name}})}}
+                                                    key={category.id} className="category-item">
+                                                        <AtomButton 
+                                                        >{category.name}</AtomButton>
+                                                        {categoryProducts.length > 0 && (
+                                                            <ul className="product-submenu" style={{ paddingLeft: '1rem', marginTop: '0.5rem' }}>
+                                                                {categoryProducts.map((product: Product) => (
+                                                                    <li onClick={(e) => {navigate(`/products/${category?.name?.toString().replace(/ /g,"-")}/${product?.name?.toString().replace(/ /g,"-")}`, { state: { selectedProduct: product } }); e.stopPropagation()}}
+                                                                    key={product.id} >
+                                                                        <AtomButton>{product.name}</AtomButton>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
+                                                    </li>
                                                 );
                                             })}
                                            
@@ -356,8 +360,8 @@ const HeaderTemplate = ({ }) => {
                                                 ) : (
                                                     <AccordionDetails>
                                                     <ul>
-                                                      <li>
-                                                        <AtomButton>All Products</AtomButton>
+                                                      <li onClick={()=>navigate("/products")}>
+                                                        <AtomButton >All Products</AtomButton>
                                                       </li>
                                                   
                                                       {categories.map((category: Category) => {
@@ -366,13 +370,15 @@ const HeaderTemplate = ({ }) => {
                                                         );
 
                                                         return (
-                                                            <li key={category.id} className="category-item">
+                                                            <li key={category.id} className="category-item" 
+                                                            onClick={() => navigate(`/products/${category?.name?.toString().replace(/ /g,"-")}`,{state:{categoryName:category.name}})}>
                                                             <AtomButton>{category.name}</AtomButton>
                                                             <span className="arrow-icon">&#8594;</span>
                                                             {categoryProducts.length > 0 && (
                                                                 <ul className="product-submenu" style={{ paddingLeft: '1rem', marginTop: '0.5rem' }}>
                                                                     {categoryProducts.map((product: Product) => (
-                                                                        <li key={product.id}>
+                                                                        <li key={product.id}
+                                                                        onClick={(e) => {navigate(`/products/${category?.name?.toString().replace(/ /g,"-")}/${product?.name?.toString().replace(/ /g,"-")}`, { state: { selectedProduct: product } }); e.stopPropagation();}}>
                                                                             <AtomButton>{product.name}</AtomButton>
                                                                         </li>
                                                                     ))}

@@ -75,8 +75,7 @@ const ProductDetails = () => {
     const handleChange = (event, newValue) => {
         setCurrentTab(newValue);
     };
-    const selectedProduct = location.state?.selectedProduct || null;
-    //const products = Array.isArray(items) ? items : [];
+    const selectedProduct = location.state?.selectedProduct || null;    
 
     useEffect(() => {
         if (!selectedProduct) {
