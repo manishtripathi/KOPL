@@ -53,22 +53,7 @@ const ProductDetails = () => {
     
         return breadcrumbs;
     };
-    
-
-    // const [selectedProduct, setSelectedProduct] = useState(null);
-    
-    // const breadcrumbHistory = useBreadCrumbHistory();
-
-    // // Exclude current page
-    // const visitedPages = breadcrumbHistory.slice(0, -1);
-    // const breadcrumbs = visitedPages
-    //   .slice(-3) // Only last 3 visited pages
-    //   .map((path, idx, arr) => {
-    //     const label = decodeURIComponent(path.split('/').pop().replace(/-/g, ' '));
-    //     const backStep = -(arr.length - idx); // -3, -2, -1
-  
-    //     return { label, backStep };
-    //   });
+        
 
     const breakPointIpad = useMediaQuery(`(${BREAK_POINT_CONSTANTS.IPAD})`)
     const [currentTab, setCurrentTab] = useState(0)
